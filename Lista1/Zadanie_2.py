@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import random as rd
 from itertools import combinations
 from math import sqrt
+import numpy as np
 
 def nodes_cord(number_of_nodes,nodes):       #function to return dictionary of lists random cordinates of nodes on 100x100 {'id':'[cordx,cordy]'}
     iterations = 0
@@ -30,30 +31,45 @@ def distance_calc(edges,gpos):      #calculate distance between each node
         x_diff = abs(gpos[items[0]][0] - gpos[items[1]][0])
         y_diff = abs(gpos[items[0]][1] - gpos[items[1]][1])
         distance.append(round(sqrt(x_diff ** 2 + y_diff ** 2),2))
-
     return distance
+
+def lists_of_edges_for_every_node():
+    pass
 
 number_of_nodes = 10
 nodes = nodes_name_list(number_of_nodes)
 edges = list(combinations(nodes, 2))  #returns list of tuples,all edges - full graph
-
-
 gpos = nodes_cord(number_of_nodes,nodes)  #dictionary of cordinates of our nodes
-
 distance = distance_calc(edges,gpos)
-print(len(edges))
-print(len(distance))
+
+print("NODES:")
+print(nodes)
+print("CORDINATIONS OF NODES")
+print(gpos)
+print("EDGES")
+print(edges)
+print("DISTANCE BETWEEN EACH NODE")
+print(distance)
+
+test=[]
+for i in range(10):
+    temp=[]
+    for elem in edges:
+        if i+1 in elem:
+            index_temp = edges.index(elem)
+            temp.append(index_temp)
+    test.append(temp)
+
+
+print("TEST")
+print(test)
+print(len(test))
+
+
 
 g = nx.Graph()
 g.add_nodes_from(nodes)  #add our nodes
-# g.add_edges_from(edges) #add edges
-# nx.draw(g, gpos, with_labels=True, node_color='purple',font_size="10")
-# plt.show()
+nx.draw(g, gpos, with_labels=True, node_color='purple',font_size="10")
+plt.show()
 
 
-#uzyj do etykiet
-# for v1 in VV:
-#   for v2 in VV:
-#     if (v1, v2) in WW:
-#       label = str(np.sqrt((Vx[v1] - Vx[v2])**2 + (Vy[v1] - Vy[v2])**2))
-#       g.add_weighted_edges_from([(v1, v2, label)])
