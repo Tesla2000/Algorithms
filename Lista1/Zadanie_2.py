@@ -42,8 +42,18 @@ def lists_of_edges_for_every_node():
                 index_temp = edges.index(elem)
                 temp.append(distance[index_temp])
         test.append(temp)
-        temp[i:i] = [0]     #add 999 e.g. 1-1,2-2 etc
+        temp[i:i] = [999]     #add 999 e.g. 1-1,2-2 etc
     return test
+
+def tree():
+    for i in range(number_of_nodes):
+        min_val = min(organized_distance[i])
+        min_index = organized_distance[i].index(min_val)+1
+        print(min_index,min_val)
+        g.add_edge(i+1,min_index)
+
+
+
 
 number_of_nodes = 10
 nodes = nodes_name_list(number_of_nodes)
@@ -60,9 +70,11 @@ for elem in organized_distance:
 
 
 
+
 g = nx.Graph()
+tree()
 g.add_nodes_from(nodes)  #add our nodes
-nx.draw(g, gpos, with_labels=True, node_color='purple',font_size="10")
+nx.draw(g, gpos, with_labels=True, node_color='maroon',font_size="10",node_shape='o',font_color="white")
 plt.show()
 
 
