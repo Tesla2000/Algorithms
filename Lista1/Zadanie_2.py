@@ -4,7 +4,7 @@ import random as rd
 from itertools import combinations
 from math import sqrt
 
-def nodes_cord(number_of_nodes,nodes):
+def nodes_cord(number_of_nodes,nodes):       #function to return dictionary of lists random cordinates of nodes on 100x100 {'id':'[cordx,cordy]'}
     iterations = 0
     nodes_cordinates = {}
     while len(nodes_cordinates) < number_of_nodes:      #to count iterations and quit if greater than 100
@@ -18,37 +18,31 @@ def nodes_cord(number_of_nodes,nodes):
                 quit()
     return nodes_cordinates
 
-def nodes_name_list(number_of_nodes):
+def nodes_name_list(number_of_nodes):   #return list of numbers to n, nodes names
     nodes = []
     for i in range(number_of_nodes):
         nodes.append(i + 1)
     return nodes
 
-def delete_edges(edges):
-    for i in range(rd.randint(30, 35)):
-        random_edge_to_be_deleted = rd.choice(edges)
-        edges.remove(random_edge_to_be_deleted)
-    return edges
+def distance_calc(edges,gpos):      #calculate distance between each node
+    distance = []
+    for items in edges:
+        x_diff = abs(gpos[items[0]][0] - gpos[items[1]][0])
+        y_diff = abs(gpos[items[0]][1] - gpos[items[1]][1])
+        distance.append(round(sqrt(x_diff ** 2 + y_diff ** 2),2))
 
+    return distance
 
 number_of_nodes = 10
 nodes = nodes_name_list(number_of_nodes)
 edges = list(combinations(nodes, 2))  #returns list of tuples,all edges - full graph
-# edges = delete_edges(edges)
-# print(len(edges))
+
 
 gpos = nodes_cord(number_of_nodes,nodes)  #dictionary of cordinates of our nodes
-print(gpos)
-print(edges)
 
-
-for items in edges:
-    x_diff = abs(gpos[items[0]][0]-gpos[items[1]][0])
-    y_diff = abs(gpos[items[0]][1]-gpos[items[1]][1])
-    distance = sqrt(x_diff**2+y_diff**2)
-    print(x_diff,y_diff,distance)
-
-
+distance = distance_calc(edges,gpos)
+print(len(edges))
+print(len(distance))
 
 g = nx.Graph()
 g.add_nodes_from(nodes)  #add our nodes
