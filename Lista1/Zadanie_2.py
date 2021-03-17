@@ -34,36 +34,29 @@ def distance_calc(edges,gpos):      #calculate distance between each node
     return distance
 
 def lists_of_edges_for_every_node():
-    pass
+    test = []
+    for i in range(number_of_nodes):
+        temp = []
+        for elem in edges:
+            if i + 1 in elem:
+                index_temp = edges.index(elem)
+                temp.append(distance[index_temp])
+        test.append(temp)
+        temp[i:i] = [0]     #add 999 e.g. 1-1,2-2 etc
+    return test
 
 number_of_nodes = 10
 nodes = nodes_name_list(number_of_nodes)
 edges = list(combinations(nodes, 2))  #returns list of tuples,all edges - full graph
 gpos = nodes_cord(number_of_nodes,nodes)  #dictionary of cordinates of our nodes
 distance = distance_calc(edges,gpos)
+organized_distance = lists_of_edges_for_every_node()
 
-print("NODES:")
-print(nodes)
 print("CORDINATIONS OF NODES")
 print(gpos)
-print("EDGES")
-print(edges)
 print("DISTANCE BETWEEN EACH NODE")
-print(distance)
-
-test=[]
-for i in range(10):
-    temp=[]
-    for elem in edges:
-        if i+1 in elem:
-            index_temp = edges.index(elem)
-            temp.append(index_temp)
-    test.append(temp)
-
-
-print("TEST")
-print(test)
-print(len(test))
+for elem in organized_distance:
+    print(elem)
 
 
 
