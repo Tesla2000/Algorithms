@@ -9,10 +9,10 @@ from itertools import combinations
 
 number_of_nodes=15
 nodes =[]
-for i in range(number_of_nodes):
+for i in range(number_of_nodes):        #list of nodes
     nodes.append(i+1)
 
-edges = combinations(nodes, 2) #returns list of tuples
+edges = combinations(nodes, 2) #returns list of tuples, all combinations
 g = nx.Graph() #stwórz graph
 g.add_nodes_from(nodes)
 g.add_edges_from(edges)
