@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 import random as rd
 from itertools import combinations
 from math import sqrt
-import numpy as np
 
 def nodes_cord(number_of_nodes,nodes):       #function to return dictionary of lists random cordinates of nodes on 100x100 {'id':'[cordx,cordy]'}
     iterations = 0
@@ -64,25 +63,17 @@ def tree(nodes,organized_distance):             #function to connect all nodes,
     while len(nodes_used) <= temp_len+1:                #random another node and check distance to all previously connected nodes, connect to the closest one
         temp_node = rd.choice(nodes)
         nodes.remove(temp_node)
-        print(nodes_used)
-        print(temp_node)
         distance_temp = []
         for items in nodes_used:
             distance_temp.append(organized_distance[temp_node-1][items-1])
             minimal_distance = min(distance_temp)
             node_to_connect = organized_distance[temp_node-1].index(minimal_distance)+1
-            #print(node_to_connect)
-            #g.add_edge(temp_node,)
 
         nodes_used.append(temp_node)
         g.add_edge(temp_node,node_to_connect)
 
         nx.draw(g, gpos, with_labels=True, node_color='maroon', font_size="10", node_shape='o', font_color="white")
         plt.show()
-
-
-
-
 
 number_of_nodes = 10
 nodes = nodes_name_list(number_of_nodes)
@@ -96,7 +87,6 @@ print(gpos)
 print("DISTANCE BETWEEN EACH NODE")
 for elem in organized_distance:
     print(elem)
-
 
 g = nx.Graph()
 g.add_nodes_from(nodes)  #add our nodes
