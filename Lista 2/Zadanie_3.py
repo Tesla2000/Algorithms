@@ -7,7 +7,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 from itertools import combinations
 
-number_of_nodes=15
+number_of_nodes=8
 nodes =[]
 for i in range(number_of_nodes):        #list of nodes
     nodes.append(i+1)
