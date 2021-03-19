@@ -45,12 +45,33 @@ def lists_of_edges_for_every_node():
         temp[i:i] = [999]     #add 999 e.g. 1-1,2-2 etc
     return test
 
-def tree():
-    for i in range(number_of_nodes):
-        min_val = min(organized_distance[i])
-        min_index = organized_distance[i].index(min_val)+1
-        print(min_index,min_val)
-        g.add_edge(i+1,min_index)
+def tree(nodes,organized_distance):             #function to connect all nodes,
+    nodes_used = []
+    temp_node= rd.choice(nodes)
+    nodes.remove(temp_node)                     #random 2 nodes and connect them
+    temp_node2 = rd.choice(nodes)
+    nodes.remove(temp_node2)
+    g.add_edge(temp_node,temp_node2)
+    nodes_used.append(temp_node)
+    nodes_used.append(temp_node2)
+
+    temp_len= len(nodes)
+
+    while len(nodes_used) <= temp_len+1:                #random another node and check distance to all previously connected nodes, connect to the closest one
+        temp_node = rd.choice(nodes)
+        nodes.remove(temp_node)
+        print(nodes_used)
+        print(temp_node)
+        distance_temp = []
+        for items in nodes_used:
+            distance_temp.append(organized_distance[temp_node-1][items-1])
+            minimal_distance = min(distance_temp)
+            node_to_connect = organized_distance[temp_node-1].index(minimal_distance)+1
+            #print(node_to_connect)
+            #g.add_edge(temp_node,)
+
+        nodes_used.append(temp_node)
+        g.add_edge(temp_node,node_to_connect)
 
 
 
@@ -69,11 +90,10 @@ for elem in organized_distance:
     print(elem)
 
 
-
-
 g = nx.Graph()
-tree()
 g.add_nodes_from(nodes)  #add our nodes
+tree(nodes,organized_distance)
+
 nx.draw(g, gpos, with_labels=True, node_color='maroon',font_size="10",node_shape='o',font_color="white")
 plt.show()
 
