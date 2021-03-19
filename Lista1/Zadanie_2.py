@@ -51,7 +51,11 @@ def tree(nodes,organized_distance):             #function to connect all nodes,
     nodes.remove(temp_node)                     #random 2 nodes and connect them
     temp_node2 = rd.choice(nodes)
     nodes.remove(temp_node2)
+    nx.draw(g, gpos, with_labels=True, node_color='maroon', font_size="10", node_shape='o', font_color="white")
+    plt.show()
     g.add_edge(temp_node,temp_node2)
+    nx.draw(g, gpos, with_labels=True, node_color='maroon', font_size="10", node_shape='o', font_color="white")
+    plt.show()
     nodes_used.append(temp_node)
     nodes_used.append(temp_node2)
 
@@ -72,6 +76,10 @@ def tree(nodes,organized_distance):             #function to connect all nodes,
 
         nodes_used.append(temp_node)
         g.add_edge(temp_node,node_to_connect)
+
+        nx.draw(g, gpos, with_labels=True, node_color='maroon', font_size="10", node_shape='o', font_color="white")
+        plt.show()
+
 
 
 
@@ -94,7 +102,6 @@ g = nx.Graph()
 g.add_nodes_from(nodes)  #add our nodes
 tree(nodes,organized_distance)
 
-nx.draw(g, gpos, with_labels=True, node_color='maroon',font_size="10",node_shape='o',font_color="white")
-plt.show()
+
 
 
