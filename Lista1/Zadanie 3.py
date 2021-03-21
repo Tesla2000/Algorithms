@@ -125,15 +125,28 @@ def distance_between_two_random_nodes(graph,start,goal):
                 # Condition to check if the
                 # neighbour node is the goal
                 if neighbour == goal:
-                    print("Shortest path = ", *new_path)
-                    return
+                    print("Shortest path = ", new_path)
+                    return new_path
             explored.append(node)
 
             # Condition when the nodes
     # are not connected
     print("So sorry, but a connecting" \
           "path doesn't exist :(")
-    return new_path
+
+    return
+
+def distance_path(path,distance):
+    for elem in distance:
+        print(elem)
+    path_dis = 0
+    for i in range(len(path)-1):
+        print(path[i])
+        print(path[i+1])
+        path_dis += distance[path[i]-1][path[i+1]-1]
+        print(path_dis)
+    print(f"Final path distance between {path[0]} and {path[-1]} is {path_dis}")
+    return
 
 
 number_of_nodes = 10
@@ -147,7 +160,9 @@ g = nx.Graph()
 g.add_nodes_from(nodes)  #add our nodes
 connections = tree(nodes,organized_distance)
 dic_of_connections = dictionary_nodes(connections,nodes_name_list(10))
-distance_between_two_random_nodes(dic_of_connections,3,5)
+path = distance_between_two_random_nodes(dic_of_connections,3,5)
+distance_path(path,organized_distance)
+
 nx.draw(g, gpos, with_labels=True, node_color='maroon', font_size="10", node_shape='o', font_color="white")
 plt.show()
 
