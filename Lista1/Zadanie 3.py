@@ -73,6 +73,9 @@ def tree(nodes,organized_distance):             #function to connect all nodes,
         connections.append((temp_node, node_to_connect))
     return connections
 
+def distance_between_two_random_nodes(organized_distance,connections):
+    pass
+
 number_of_nodes = 10
 nodes = nodes_name_list(number_of_nodes)
 edges = list(combinations(nodes, 2))  #returns list of tuples,all edges - full graph
