@@ -52,7 +52,7 @@ def tree(nodes,organized_distance):             #function to connect all nodes,
     temp_node2 = rd.choice(nodes)
     nodes.remove(temp_node2)
     g.add_edge(temp_node,temp_node2)
-    connections.append((temp_node,temp_node2))
+    connections.append([temp_node,temp_node2])
 
     nodes_used.append(temp_node)
     nodes_used.append(temp_node2)
@@ -70,11 +70,71 @@ def tree(nodes,organized_distance):             #function to connect all nodes,
 
         nodes_used.append(temp_node)
         g.add_edge(temp_node,node_to_connect)
-        connections.append((temp_node, node_to_connect))
+        connections.append([temp_node, node_to_connect])
     return connections
 
-def distance_between_two_random_nodes(organized_distance,connections):
-    pass
+def dictionary_nodes(connections,nodes):
+    dic = {}
+
+    for node in nodes:
+        nodes_connected = []
+        for connection in connections:
+            if node in connection:
+                temp = 0
+                for numbers in connection:
+                    if numbers != node:
+                        temp = numbers
+
+                nodes_connected.append(temp)
+
+        dic[node] = nodes_connected
+    return dic
+
+
+def distance_between_two_random_nodes(graph,start,goal):
+    explored = []
+
+    # Queue for traversing the
+    # graph in the
+    queue = [[start]]
+
+    # If the desired node is
+    # reached
+    if start == goal:
+        print("Same Node")
+        return
+
+    # Loop to traverse the graph
+    # with the help of the queue
+    while queue:
+        path = queue.pop(0)
+        node = path[-1]
+
+        # Codition to check if the
+        # current node is not visited
+        if node not in explored:
+            neighbours = graph[node]
+
+            # Loop to iterate over the
+            # neighbours of the node
+            for neighbour in neighbours:
+                new_path = list(path)
+                new_path.append(neighbour)
+                queue.append(new_path)
+
+                # Condition to check if the
+                # neighbour node is the goal
+                if neighbour == goal:
+                    print("Shortest path = ", *new_path)
+                    return
+            explored.append(node)
+
+            # Condition when the nodes
+    # are not connected
+    print("So sorry, but a connecting" \
+          "path doesn't exist :(")
+    return new_path
+
 
 number_of_nodes = 10
 nodes = nodes_name_list(number_of_nodes)
@@ -86,7 +146,8 @@ organized_distance = lists_of_edges_for_every_node()
 g = nx.Graph()
 g.add_nodes_from(nodes)  #add our nodes
 connections = tree(nodes,organized_distance)
-print(connections)
+dic_of_connections = dictionary_nodes(connections,nodes_name_list(10))
+distance_between_two_random_nodes(dic_of_connections,3,5)
 nx.draw(g, gpos, with_labels=True, node_color='maroon', font_size="10", node_shape='o', font_color="white")
 plt.show()
 
