@@ -65,7 +65,7 @@ def add_nodes(info,dict):
 
 net_x = 300
 net_y = 240
-safe_dist = 20 #min distance between nodes
+safe_dist = 50 #min distance between nodes
 max_nodes = 1
 
 x_y_max = counter(net_x,net_y,safe_dist)
