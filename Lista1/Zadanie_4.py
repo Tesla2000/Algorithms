@@ -1,7 +1,6 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 import numpy as np
-import random
 
 def add_nodes(VV,Vx,Vy):
     gpos = {}
@@ -41,7 +40,7 @@ def same(lista):    #sprawdza czy jest poprawne polaczenie,czy w WW pary maja te
             return False
     return True
 
-def ok(VV):
+def ok(VV):            #przejscie wszystkich mozliwych mozliwosci
     n = 3
     done = []
     for _ in VV:
