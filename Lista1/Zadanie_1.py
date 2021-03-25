@@ -1,15 +1,18 @@
+#suma potęg 3
 def sequence_1(n):
     if n ==0:
         return 0
     else:
         return 3**n +sequence_1(n-1)
 
+#
 def sequence_2(n):
     if n ==-1 or n==0:
         return 0
     else:
         return n+sequence_2(n-2)
 
+#wzór fibbonaciego
 def sequence_3(n):
     if n==0:
         return 0
