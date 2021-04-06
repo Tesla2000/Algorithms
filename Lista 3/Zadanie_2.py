@@ -1,4 +1,5 @@
 import math
+from datetime import datetime
 
 def factors(n):
     factors = []
@@ -27,8 +28,14 @@ def get_number():
 
     return math.prod(index)
 
-print(aczp(16,24))
-print(aeuc(16,24))
-print(get_number())
+def get_time():
+    return datetime.now()
 
-
+t1 = get_time()
+print(aczp(161280,161280))
+t2 = get_time()
+print(t2-t1)
+t1 = get_time()
+print(aeuc(161280,161280))
+t2 = get_time()
+print(t2-t1)
