@@ -1,30 +1,34 @@
-from math import sqrt
+import math
 
-def since_till(since, till):
-    zw = []
-    while since != till + 1:
-        zw.append(since)
-        since += 1
-    return zw
+def factors(n):
+    factors = []
+    for i in range(1, n + 1):
+        if n % i == 0:
+            factors.append(i)
+    return factors
 
+def aczp(a, b):
+    a_primes = factors(a)
+    b_primes = factors(b)
+    common = (set(a_primes) - (set(a_primes) - set(b_primes)))
+    return max(common)
 
-def net(till):
-    sq = int(sqrt(till)) 
-    current = 1  
-    tab = since_till(1, till)  
-    while True:
-        if current > sq:  
-            return tab
+def aeuc(a, b):
+    while b:
+        a, b = b, a % b
+    return a
 
-        for i in tab: 
-            if (not (i % current) and not (current == i)) and current != 1:
-                tab.remove(i)
+def get_number():
+    index1 = [2,4,3,8,1]
+    index2 = [2,5,6,7,2]
+    index = []
+    for i in range(len(index1)):
+        index.append(index1[i]*index2[i])
 
-        i = tab.index(current) + 1
-        current = tab[i]
+    return math.prod(index)
 
-prime_numbers = net(100)
-for prime in prime_numbers:
-    print(prime)
+print(aczp(16,24))
+print(aeuc(16,24))
+print(get_number())
 
 
