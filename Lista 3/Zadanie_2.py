@@ -66,7 +66,6 @@ def main():
             break
 
     graph(times_aczp, times_euc)
-    return times_aczp, times_euc
 
-x = main()
+main()
 
