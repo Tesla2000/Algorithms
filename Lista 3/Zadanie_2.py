@@ -34,34 +34,39 @@ def get_time():
     return datetime.now()
 
 def graph(aczp, euc):
-    x_aczp = np.linspace(1,len(aczp),len(aczp))
-    plt.plot(x_aczp,aczp)
-    plt.title('Times of algorithms')
-    plt.ylabel('Miliseconds')
+    fig, axs = plt.subplots(2)
+    fig.suptitle('Time in miliseconds')
+    axs[0].set_title('Prime algorithm')
+    axs[1].set_title('Euclides algorithm')
+    plt.setp(axs[0], ylabel='Time')
+    plt.setp(axs[1], ylabel='Time')
+    x = np.linspace(1, len(aczp), len(aczp))
+    axs[0].plot(x, aczp)
+    axs[1].plot(x, euc)
+    fig.tight_layout()
     plt.show()
-    x_euc = np.linspace(1,100,len(euc))
-    plt.plot(x_euc, euc)
-    plt.ylabel('Miliseconds')
-    plt.show()
+
 
 def main():
     times_aczp = []
     times_euc = []
-    for i in range(100):
+    for i in range(get_number()):
         t1 = get_time()
         t2 = get_time()
-        delta = t2-t1
-        delta = delta.total_seconds()
-        times_aczp.append(delta)
+        delta1 = t2-t1
+        delta1 = delta1.total_seconds()
+        times_aczp.append(delta1)
         t1 = get_time()
         t2 = get_time()
-        delta = t2 - t1
-        delta = delta.total_seconds()
-        times_euc.append(delta)
+        delta2 = t2 - t1
+        delta2 = delta2.total_seconds()
+        times_euc.append(delta2)
+        if delta1 >=300 or delta2 >= 300:
+            print('Too long')
+            break
 
     graph(times_aczp, times_euc)
     return times_aczp, times_euc
 
 x = main()
-print(x)
 
