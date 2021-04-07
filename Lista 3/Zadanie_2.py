@@ -1,5 +1,7 @@
 import math
 from datetime import datetime
+import numpy as np
+import matplotlib.pyplot as plt
 
 def factors(n):
     factors = []
@@ -31,11 +33,35 @@ def get_number():
 def get_time():
     return datetime.now()
 
-t1 = get_time()
-print(aczp(161280,161280))
-t2 = get_time()
-print(t2-t1)
-t1 = get_time()
-print(aeuc(161280,161280))
-t2 = get_time()
-print(t2-t1)
+def graph(aczp, euc):
+    x_aczp = np.linspace(1,len(aczp),len(aczp))
+    plt.plot(x_aczp,aczp)
+    plt.title('Times of algorithms')
+    plt.ylabel('Miliseconds')
+    plt.show()
+    x_euc = np.linspace(1,100,len(euc))
+    plt.plot(x_euc, euc)
+    plt.ylabel('Miliseconds')
+    plt.show()
+
+def main():
+    times_aczp = []
+    times_euc = []
+    for i in range(100):
+        t1 = get_time()
+        t2 = get_time()
+        delta = t2-t1
+        delta = delta.total_seconds()
+        times_aczp.append(delta)
+        t1 = get_time()
+        t2 = get_time()
+        delta = t2 - t1
+        delta = delta.total_seconds()
+        times_euc.append(delta)
+
+    graph(times_aczp, times_euc)
+    return times_aczp, times_euc
+
+x = main()
+print(x)
+
