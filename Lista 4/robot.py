@@ -42,10 +42,11 @@ def generate_M_robots(M):
 
 def print_generated_robots(vector):
     count = 1
+    t = PrettyTable(['No.', 'IDENTITY', 'TYPE', 'MASS [dag]', 'RANGE [km]', 'RESOLUTION [MP]'])
     for elem in vector:
-        print(f'Robot {count}. IDENTITY: {elem.identity}. TYPE: {elem.type}. MASS: {elem.mass}. RANGE: {elem.range}. RESOLUTION {elem.resolution}')
+        t.add_row([count, elem.identity, elem.type, elem.mass, elem.range, elem.resolution])
         count +=1
+    print(t)
 
-vector = generate_M_robots(2)
+vector = generate_M_robots(10)
 print_generated_robots(vector)
-
