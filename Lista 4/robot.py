@@ -68,7 +68,3 @@ def write_to_csv_generated_robots(r_vector):
             }
             csv_writer.writerow(robot)
             count +=1
-
-r_vector = generate_M_robots(20)
-print_generated_robots(r_vector)
-write_to_csv_generated_robots(r_vector)
