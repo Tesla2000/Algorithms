@@ -118,5 +118,5 @@ dmypy.json
 *.xml
 .gitattributes
 
-Lista_3/Zadanie_4.py
-Lista_3/Zadanie_5.py
+Lista*3/Zadanie_4.py
+Lista*3/Zadanie_5.py
