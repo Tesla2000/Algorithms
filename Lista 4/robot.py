@@ -35,18 +35,21 @@ class Robot():
 
 
 def generate_M_robots(M):
-    vector = []
+    r_vector = []
     for _ in range(M):
-        vector.append(Robot())
-    return vector
+        r_vector.append(Robot())
+    return r_vector
 
-def print_generated_robots(vector):
+def print_generated_robots(r_vector):
     count = 1
     t = PrettyTable(['No.', 'IDENTITY', 'TYPE', 'MASS [dag]', 'RANGE [km]', 'RESOLUTION [MP]'])
-    for elem in vector:
+    for elem in r_vector:
         t.add_row([count, elem.identity, elem.type, elem.mass, elem.range, elem.resolution])
         count +=1
     print(t)
 
-vector = generate_M_robots(10)
-print_generated_robots(vector)
+def write_to_csv_generated_robots(r_vector):
+    pass
+
+r_vector = generate_M_robots(10)
+print_generated_robots(r_vector)
