@@ -1,5 +1,6 @@
 import random
 import string
+from prettytable import PrettyTable
 
 class Robot():
 
@@ -32,5 +33,19 @@ class Robot():
     def _random_resolution(self):
         return random.randint(self.resolution_range[0], self.resolution_range[1])
 
-r = Robot()
-print(r.identity, r.type, r.mass, r.range, r.resolution)
+
+def generate_M_robots(M):
+    vector = []
+    for _ in range(M):
+        vector.append(Robot())
+    return vector
+
+def print_generated_robots(vector):
+    count = 1
+    for elem in vector:
+        print(f'Robot {count}. IDENTITY: {elem.identity}. TYPE: {elem.type}. MASS: {elem.mass}. RANGE: {elem.range}. RESOLUTION {elem.resolution}')
+        count +=1
+
+vector = generate_M_robots(2)
+print_generated_robots(vector)
+
