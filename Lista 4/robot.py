@@ -1,6 +1,7 @@
 import random
 import string
 from prettytable import PrettyTable
+import csv
 
 class Robot():
 
@@ -33,12 +34,12 @@ class Robot():
     def _random_resolution(self):
         return random.randint(self.resolution_range[0], self.resolution_range[1])
 
-
 def generate_M_robots(M):
     r_vector = []
     for _ in range(M):
         r_vector.append(Robot())
     return r_vector
+
 
 def print_generated_robots(r_vector):
     count = 1
@@ -49,7 +50,25 @@ def print_generated_robots(r_vector):
     print(t)
 
 def write_to_csv_generated_robots(r_vector):
-    pass
+    fieldnames = ['No.', 'IDENTITY', 'TYPE', 'MASS', 'RANGE', 'RESOLUTION']
 
-r_vector = generate_M_robots(10)
+    with open('Files/robot_data.csv', 'w') as csv_file:
+        csv_writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+        csv_writer.writeheader()
+        count = 1
+        for elem in r_vector:
+
+            robot = {
+                'No.': count,
+                'IDENTITY': elem.identity,
+                'TYPE': elem.type,
+                'MASS': elem.mass,
+                'RANGE': elem.range,
+                'RESOLUTION': elem.resolution,
+            }
+            csv_writer.writerow(robot)
+            count +=1
+
+r_vector = generate_M_robots(20)
 print_generated_robots(r_vector)
+write_to_csv_generated_robots(r_vector)
