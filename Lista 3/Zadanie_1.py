@@ -12,7 +12,6 @@ def primes(n):
     return primes
 
 def since_till(since, till):
-    '''Return list '''
     zw = []
     while since != till + 1:
         zw.append(since)
