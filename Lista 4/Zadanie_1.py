@@ -74,8 +74,34 @@ def choose_mass():
         except Exception as err:
             print(err)
 
+def choose_range():
+    print('Type the range of robot to be searched')
+    while True:
+        try:
+            int_range = int(input("Type range: "))
+            if int_range < 0 or int_range >1000:
+                print('All robots range is between 0 and 1000')
+            else:
+                return  int_range
+
+        except Exception as err:
+            print(err)
+
+def choose_resolution():
+    print('Type the resolution of robot to be searched')
+    while True:
+        try:
+            int_res = int(input("Type resolution: "))
+            if int_res < 1 or int_res >30:
+                print('All robots resolution is between 1 and 30')
+            else:
+                return  int_res
+
+        except Exception as err:
+            print(err)
+
 if __name__ == "__main__":
     r_vector = r.generate_M_robots(10)
     r.print_generated_robots(r_vector)
 
-    print(choose_mass())
+    print(choose_resolution())
