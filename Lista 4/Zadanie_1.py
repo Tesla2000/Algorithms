@@ -100,8 +100,19 @@ def choose_resolution():
         except Exception as err:
             print(err)
 
+def single_trait_search(r_vector):
+    trait = choose_trait()
+    if trait == 1:
+        identity = choose_char_chain()
+        wanted_robots = []
+        for elem in r_vector:
+            if identity in elem.identity:
+                wanted_robots.append(elem)
+        return wanted_robots
+
 if __name__ == "__main__":
     r_vector = r.generate_M_robots(10)
     r.print_generated_robots(r_vector)
 
-    print(choose_resolution())
+    t = single_trait_search(r_vector)
+
