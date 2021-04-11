@@ -42,12 +42,15 @@ def generate_M_robots(M):
 
 
 def print_generated_robots(r_vector):
-    count = 1
-    t = PrettyTable(['No.', 'IDENTITY', 'TYPE', 'MASS [dag]', 'RANGE [km]', 'RESOLUTION [MP]'])
-    for elem in r_vector:
-        t.add_row([count, elem.identity, elem.type, elem.mass, elem.range, elem.resolution])
-        count +=1
-    print(t)
+    if r_vector == None:
+        print(r_vector)
+    else:
+        count = 1
+        t = PrettyTable(['No.', 'IDENTITY', 'TYPE', 'MASS [dag]', 'RANGE [km]', 'RESOLUTION [MP]'])
+        for elem in r_vector:
+            t.add_row([count, elem.identity, elem.type, elem.mass, elem.range, elem.resolution])
+            count +=1
+        print(t)
 
 def write_to_csv_generated_robots(r_vector):
     fieldnames = ['No.', 'IDENTITY', 'TYPE', 'MASS', 'RANGE', 'RESOLUTION']

@@ -102,17 +102,57 @@ def choose_resolution():
 
 def single_trait_search(r_vector):
     trait = choose_trait()
+    wanted_robots = []
     if trait == 1:
         identity = choose_char_chain()
-        wanted_robots = []
         for elem in r_vector:
             if identity in elem.identity:
                 wanted_robots.append(elem)
-        return wanted_robots
+        if len(wanted_robots) == 0:
+            return None
+        else:
+            return wanted_robots
+    elif trait == 2:
+        type = choose_type()
+        for elem in r_vector:
+            if type == elem.type:
+                wanted_robots.append(elem)
+        if len(wanted_robots) == 0:
+            return None
+        else:
+            return wanted_robots
+    elif trait == 3:
+        mass = choose_mass()
+        for elem in r_vector:
+            if mass == elem.mass:
+                wanted_robots.append(elem)
+        if len(wanted_robots) == 0:
+            return None
+        else:
+            return wanted_robots
+    elif trait == 4:
+        range = choose_range()
+        for elem in r_vector:
+            if range == elem.mass:
+                wanted_robots.append(elem)
+        if len(wanted_robots) == 0:
+            return None
+        else:
+            return wanted_robots
+    elif trait == 5:
+        res = choose_resolution()
+        for elem in r_vector:
+            if res == elem.mass:
+                wanted_robots.append(elem)
+        if len(wanted_robots) == 0:
+            return None
+        else:
+            return wanted_robots
 
 if __name__ == "__main__":
     r_vector = r.generate_M_robots(10)
     r.print_generated_robots(r_vector)
 
     t = single_trait_search(r_vector)
+    r.print_generated_robots(t)
 
