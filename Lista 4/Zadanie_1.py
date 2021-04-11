@@ -24,7 +24,7 @@ def choose_trait():
             print(t)
 
 def choose_char_chain():
-    print('Type identity to be search')
+    print('Type identity to be searched')
     while True:
         try:
             string = input("Type chain of char: ")
@@ -35,12 +35,35 @@ def choose_char_chain():
         except Exception as err:
             print(err)
 
+def choose_type():
+    print(f'Type one of the following types to be searched: "AGV", "AFV", "AUV"')
+
+    t = PrettyTable(['CHOOSE:', ''])
+    t.add_row(['1 - ', 'AGV'])
+    t.add_row(['2 - ', 'AFV'])
+    t.add_row(['3 - ', 'AUV'])
+    print(t)
+
+    while True:
+        try:
+            number = int(input("Type number: "))
+            if number in [1,2,3]:
+                if number == 1:
+                    return 'AGV'
+                elif number == 2:
+                    return 'AFV'
+                else:
+                    return 'AUV'
+            else:
+                print('\nInvalid number')
+                print(t)
+        except Exception as err:
+            print(err)
+            print(t)
+
 
 if __name__ == "__main__":
     r_vector = r.generate_M_robots(10)
     r.print_generated_robots(r_vector)
 
-    print(choose_char_chain())
-
-    choosen_trait = choose_trait()
-    print(choosen_trait)
+    print(choose_type())
