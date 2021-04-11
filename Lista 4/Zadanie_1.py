@@ -61,9 +61,21 @@ def choose_type():
             print(err)
             print(t)
 
+def choose_mass():
+    print('Type the mass of robot to be searched')
+    while True:
+        try:
+            int_mass = int(input("Type mass: "))
+            if int_mass < 50 or int_mass >200:
+                print('All robots mass is between 50 and 200')
+            else:
+                return  int_mass
+
+        except Exception as err:
+            print(err)
 
 if __name__ == "__main__":
     r_vector = r.generate_M_robots(10)
     r.print_generated_robots(r_vector)
 
-    print(choose_type())
+    print(choose_mass())
