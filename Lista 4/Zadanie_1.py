@@ -134,7 +134,7 @@ def single_trait_search(r_vector):
     elif trait == 4:
         range = choose_range()
         for elem in r_vector:
-            if range == elem.mass:
+            if range == elem.range:
                 wanted_robots.append(elem)
         if len(wanted_robots) == 0:
             return None
@@ -143,7 +143,7 @@ def single_trait_search(r_vector):
     elif trait == 5:
         res = choose_resolution()
         for elem in r_vector:
-            if res == elem.mass:
+            if res == elem.resolution:
                 wanted_robots.append(elem)
         if len(wanted_robots) == 0:
             return None
@@ -165,8 +165,23 @@ def decision():
         except Exception as err:
             print(err)
 
+def decision2():
+    while True:
+        try:
+            decision = input("S\\V? :")
+            decision = decision.upper()
+            if decision == 'S':
+                return True
+            elif decision == 'V':
+                return False
+            else:
+                print('Wrong input')
 
-def full_vector_search():
+        except Exception as err:
+            print(err)
+
+
+def full_vector_trait():
     search_vector = []
     print('FULL VECTOR SEARCH')
     print('Whick traits you want to use for search?')
@@ -198,9 +213,40 @@ def full_vector_search():
 
     return search_vector
 
+def full_vector_search():
+    pass
+
+def robot_object_unpack(robot):
+    list =[]
+    id = robot.identity
+    list.append(id)
+    type = robot.type
+    list.append(type)
+    mass = robot.mass
+    list.append(mass)
+    range = robot.range
+    list.append(range)
+    res = robot.resolution
+    list.append(res)
+    return list
+
 if __name__ == "__main__":
     r_vector = r.generate_M_robots(10)
     r.print_generated_robots(r_vector)
 
-    print(full_vector_search())
+    print('Single trait or vector trait search?')
+    if decision2():
+        found = single_trait_search(r_vector)
+        print(found)
+        r.print_generated_robots(found)
+    else:
+        search_vec = full_vector_trait()
+        print(f'Searching following vector: {search_vec}')
+
+
+
+    # ziped = zip(robot_object_unpack(r_vector[0]),full_vector_trait())
+    #
+    # for i,j in ziped:
+    #     print(i,j)
 
