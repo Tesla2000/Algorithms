@@ -1,9 +1,10 @@
 from prettytable import PrettyTable
+import time
 
 import robot as r
 
 def choose_trait():
-    print('Choose trait to be searched')
+    print('\nChoose trait to be searched')
     t = PrettyTable(['CHOOSE:', ''])
     t.add_row(['1 - ', 'IDENTITY'])
     t.add_row(['2 - ', 'TYPE'])
@@ -25,7 +26,7 @@ def choose_trait():
             print(t)
 
 def choose_char_chain():
-    print('Type identity to be searched')
+    print('\nType identity to be searched')
     while True:
         try:
             string = input("Type chain of char: ")
@@ -37,7 +38,7 @@ def choose_char_chain():
             print(err)
 
 def choose_type():
-    print(f'Type one of the following types to be searched: "AGV", "AFV", "AUV"')
+    print(f'\nType one of the following types to be searched: "AGV", "AFV", "AUV"')
 
     t = PrettyTable(['CHOOSE:', ''])
     t.add_row(['1 - ', 'AGV'])
@@ -63,7 +64,7 @@ def choose_type():
             print(t)
 
 def choose_mass():
-    print('Type the mass of robot to be searched')
+    print('\nType the mass of robot to be searched')
     while True:
         try:
             int_mass = int(input("Type mass: "))
@@ -76,7 +77,7 @@ def choose_mass():
             print(err)
 
 def choose_range():
-    print('Type the range of robot to be searched')
+    print('\nType the range of robot to be searched')
     while True:
         try:
             int_range = int(input("Type range: "))
@@ -89,7 +90,7 @@ def choose_range():
             print(err)
 
 def choose_resolution():
-    print('Type the resolution of robot to be searched')
+    print('\nType the resolution of robot to be searched')
     while True:
         try:
             int_res = int(input("Type resolution: "))
@@ -106,45 +107,70 @@ def single_trait_search(r_vector):
     wanted_robots = []
     if trait == 1:
         identity = choose_char_chain()
+        print(f"\nSearching IDENTITY: '{identity}' ")
         for elem in r_vector:
             if identity in elem.identity:
+                print(f"Found in {elem}")
                 wanted_robots.append(elem)
+            else:
+                print(f"Not found in {elem}")
+            time.sleep(0.5)
         if len(wanted_robots) == 0:
             return None
         else:
             return wanted_robots
     elif trait == 2:
         type = choose_type()
+        print(f"\nSearching TYPE: '{type}' ")
         for elem in r_vector:
             if type == elem.type:
+                print(f"Found in {elem}")
                 wanted_robots.append(elem)
+            else:
+                print(f"Not found in {elem}")
+            time.sleep(0.5)
         if len(wanted_robots) == 0:
             return None
         else:
             return wanted_robots
     elif trait == 3:
         mass = choose_mass()
+        print(f"\nSearching MASS: '{mass}' ")
         for elem in r_vector:
             if mass == elem.mass:
+                print(f"Found in {elem}")
                 wanted_robots.append(elem)
+            else:
+                print(f"Not found in {elem}")
+            time.sleep(0.5)
         if len(wanted_robots) == 0:
             return None
         else:
             return wanted_robots
     elif trait == 4:
         range = choose_range()
+        print(f"\nSearching RANGE: '{range}' ")
         for elem in r_vector:
             if range == elem.range:
+                print(f"Found in {elem}")
                 wanted_robots.append(elem)
+            else:
+                print(f"Not found in {elem}")
+            time.sleep(0.5)
         if len(wanted_robots) == 0:
             return None
         else:
             return wanted_robots
     elif trait == 5:
         res = choose_resolution()
+        print(f"\nSearching RESOLUTION: '{res}' ")
         for elem in r_vector:
             if res == elem.resolution:
+                print(f"Found in {elem}")
                 wanted_robots.append(elem)
+            else:
+                print(f"Not found in {elem}")
+            time.sleep(0.5)
         if len(wanted_robots) == 0:
             return None
         else:
@@ -262,17 +288,19 @@ def robot_object_unpack(robot):
     return list
 
 if __name__ == "__main__":
-    r_vector = r.generate_M_robots(10000)
+    r_vector = r.generate_M_robots(10)
     r.print_generated_robots(r_vector)
 
-    print('\nSearch algorithm on the foregoing robots data\n')
+    print('\nSearch algorithm on the foregoing robots data.\n')
 
     print('Would you like to use single trait or vector trait search?')
     if decision2():
         found = single_trait_search(r_vector)
+        print('\nDetected robots with given parameters:')
         r.print_generated_robots(found)
     else:
         search_vec = full_vector_trait()
         print(f'Searching following vector: {search_vec}')
         found = full_vector_search(r_vector,search_vec)
+        print('\nDetected robots with given parameters:')
         r.print_generated_robots(found)
