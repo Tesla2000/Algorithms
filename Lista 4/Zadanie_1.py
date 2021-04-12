@@ -68,8 +68,8 @@ def choose_mass():
     while True:
         try:
             int_mass = int(input("Type mass: "))
-            if int_mass < 50 or int_mass >200:
-                print('All robots mass is between 50 and 200')
+            if int_mass < 50 or int_mass >2000:
+                print('All robots mass is between 50 and 2000')
             else:
                 return  int_mass
 
@@ -105,10 +105,12 @@ def choose_resolution():
 def single_trait_search(r_vector):
     trait = choose_trait()
     wanted_robots = []
+
     if trait == 1:
         identity = choose_char_chain()
         print(f"\nSearching IDENTITY: '{identity}' ")
         for elem in r_vector:
+            print(f"\nIDENTITY of {elem} is {elem.identity}")
             if identity in elem.identity:
                 print(f"Found in {elem}")
                 wanted_robots.append(elem)
@@ -123,6 +125,7 @@ def single_trait_search(r_vector):
         type = choose_type()
         print(f"\nSearching TYPE: '{type}' ")
         for elem in r_vector:
+            print(f"\nTYPE of {elem} is {elem.type}")
             if type == elem.type:
                 print(f"Found in {elem}")
                 wanted_robots.append(elem)
@@ -137,6 +140,7 @@ def single_trait_search(r_vector):
         mass = choose_mass()
         print(f"\nSearching MASS: '{mass}' ")
         for elem in r_vector:
+            print(f"\nMASS of {elem} is {elem.mass}")
             if mass == elem.mass:
                 print(f"Found in {elem}")
                 wanted_robots.append(elem)
@@ -151,6 +155,7 @@ def single_trait_search(r_vector):
         range = choose_range()
         print(f"\nSearching RANGE: '{range}' ")
         for elem in r_vector:
+            print(f"\nRANGE of {elem} is {elem.range}")
             if range == elem.range:
                 print(f"Found in {elem}")
                 wanted_robots.append(elem)
@@ -165,6 +170,7 @@ def single_trait_search(r_vector):
         res = choose_resolution()
         print(f"\nSearching RESOLUTION: '{res}' ")
         for elem in r_vector:
+            print(f"\nRESOLUTION of {elem} is {elem.resolution}")
             if res == elem.resolution:
                 print(f"Found in {elem}")
                 wanted_robots.append(elem)
@@ -240,7 +246,7 @@ def full_vector_trait():
     return search_vector
 
 def full_vector_search(r_vector, search_vec):
-
+    print(f'\nSearching following vector: {search_vec}')
     wanted_robots = []
     for elem in r_vector:
         ziped = zip(robot_object_unpack(elem),search_vec)
@@ -300,7 +306,6 @@ if __name__ == "__main__":
         r.print_generated_robots(found)
     else:
         search_vec = full_vector_trait()
-        print(f'Searching following vector: {search_vec}')
         found = full_vector_search(r_vector,search_vec)
         print('\nDetected robots with given parameters:')
         r.print_generated_robots(found)
