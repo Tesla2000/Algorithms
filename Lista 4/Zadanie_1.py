@@ -215,21 +215,26 @@ def full_vector_trait():
 
 def full_vector_search(r_vector, search_vec):
 
+    wanted_robots = []
     for elem in r_vector:
         ziped = zip(robot_object_unpack(elem),search_vec)
 
-        print('\n')
+        temp = []
         for original, wanted in ziped:
-            print(original, wanted)
             if wanted == None:
-                print('no')
+                temp.append(None)
             else:
-                if wanted in original:
-                    print('ok')
+                if str(wanted) == str(original):
+                    temp.append(wanted)
                 else:
-                    print('no')
+                    temp.append(None)
+        if temp == search_vec:
+            wanted_robots.append(elem)
 
-
+    if len(wanted_robots) == 0:
+        return None
+    else:
+        return wanted_robots
 
 def robot_object_unpack(robot):
     list =[]
@@ -246,17 +251,15 @@ def robot_object_unpack(robot):
     return list
 
 if __name__ == "__main__":
-    r_vector = r.generate_M_robots(30000)
+    r_vector = r.generate_M_robots(10000)
     r.print_generated_robots(r_vector)
 
     print('Single trait or vector trait search?')
     if decision2():
         found = single_trait_search(r_vector)
-        print(found)
         r.print_generated_robots(found)
     else:
         search_vec = full_vector_trait()
         print(f'Searching following vector: {search_vec}')
-        full_vector_search(r_vector,search_vec)
-
-
+        found = full_vector_search(r_vector,search_vec)
+        r.print_generated_robots(found)
