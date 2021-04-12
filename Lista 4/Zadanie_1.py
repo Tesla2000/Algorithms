@@ -220,14 +220,25 @@ def full_vector_search(r_vector, search_vec):
         ziped = zip(robot_object_unpack(elem),search_vec)
 
         temp = []
+        temp_count = 0
         for original, wanted in ziped:
-            if wanted == None:
-                temp.append(None)
-            else:
-                if str(wanted) == str(original):
-                    temp.append(wanted)
-                else:
+            if temp_count == 0:
+                if wanted == None:
                     temp.append(None)
+                else:
+                    if str(wanted) in str(original):
+                        temp.append(wanted)
+                    else:
+                        temp.append(None)
+            else:
+                if wanted == None:
+                    temp.append(None)
+                else:
+                    if str(wanted) == str(original):
+                        temp.append(wanted)
+                    else:
+                        temp.append(None)
+
         if temp == search_vec:
             wanted_robots.append(elem)
 
@@ -254,7 +265,9 @@ if __name__ == "__main__":
     r_vector = r.generate_M_robots(10000)
     r.print_generated_robots(r_vector)
 
-    print('Single trait or vector trait search?')
+    print('\nSearch algorithm on the foregoing robots data\n')
+
+    print('Would you like to use single trait or vector trait search?')
     if decision2():
         found = single_trait_search(r_vector)
         r.print_generated_robots(found)
