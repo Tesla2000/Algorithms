@@ -252,9 +252,9 @@ def full_vector_search(r_vector, search_vec):
         ziped = zip(robot_object_unpack(elem),search_vec)
 
         temp = []
-        temp_count = 0
+        first_item = True
         for original, wanted in ziped:
-            if temp_count == 0:
+            if first_item:
                 if wanted == None:
                     temp.append(None)
                 else:
@@ -270,6 +270,7 @@ def full_vector_search(r_vector, search_vec):
                         temp.append(wanted)
                     else:
                         temp.append(None)
+            first_item = False
 
         if temp == search_vec:
             wanted_robots.append(elem)
