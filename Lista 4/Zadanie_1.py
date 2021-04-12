@@ -3,6 +3,7 @@ from prettytable import PrettyTable
 import robot as r
 
 def choose_trait():
+    print('Choose trait to be searched')
     t = PrettyTable(['CHOOSE:', ''])
     t.add_row(['1 - ', 'IDENTITY'])
     t.add_row(['2 - ', 'TYPE'])
@@ -149,10 +150,57 @@ def single_trait_search(r_vector):
         else:
             return wanted_robots
 
+def decision():
+    while True:
+        try:
+            decision = input("Y\\N? :")
+            decision = decision.upper()
+            if decision == 'Y':
+                return True
+            elif decision == 'N':
+                return False
+            else:
+                print('Wrong input')
+
+        except Exception as err:
+            print(err)
+
+
+def full_vector_search():
+    search_vector = []
+    print('FULL VECTOR SEARCH')
+    print('Whick traits you want to use for search?')
+    print('Identity?')
+    if decision():
+        search_vector.append(choose_char_chain())
+    else:
+        search_vector.append(None)
+    print('Add Type trait to use for search?')
+    if decision():
+        search_vector.append(choose_type())
+    else:
+        search_vector.append(None)
+    print('Add Mass trait to use for search?')
+    if decision():
+        search_vector.append(choose_mass())
+    else:
+        search_vector.append(None)
+    print('Add Range trait to use for search?')
+    if decision():
+        search_vector.append(choose_range())
+    else:
+        search_vector.append(None)
+    print('Add Resolution trait to use for search?')
+    if decision():
+        search_vector.append(choose_resolution())
+    else:
+        search_vector.append(None)
+
+    return search_vector
+
 if __name__ == "__main__":
     r_vector = r.generate_M_robots(10)
     r.print_generated_robots(r_vector)
 
-    t = single_trait_search(r_vector)
-    r.print_generated_robots(t)
+    print(full_vector_search())
 
