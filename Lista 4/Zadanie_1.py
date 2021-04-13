@@ -348,6 +348,71 @@ def full_vector_search(r_vector, search_vec):
     else:
         return wanted_robots
 
+def multi_full_vector_search(r_vector, search_vec):
+    print(f'\nSearching following vector: {search_vec}')
+    wanted_robots_temp = []
+
+    if search_vec[0] != None:
+        temp = []
+        for trait in search_vec[0]:
+            for robot in r_vector:
+                if trait in robot.identity:
+                    temp.append(robot)
+
+        temp_set = set(temp)
+        wanted_robots_temp.append(temp_set)
+    else:
+        wanted_robots_temp.append(set(r_vector))
+
+
+    if search_vec[1] != None:
+        temp = []
+        for trait in search_vec[1]:
+            for robot in r_vector:
+                if trait == robot.type:
+                    temp.append(robot)
+        temp_set = set(temp)
+        wanted_robots_temp.append(temp_set)
+    else:
+        wanted_robots_temp.append(set(r_vector))
+
+    if search_vec[2] != None:
+        temp = []
+        for trait in search_vec[2]:
+            for robot in r_vector:
+                if trait == robot.mass:
+                    temp.append(robot)
+        temp_set = set(temp)
+        wanted_robots_temp.append(temp_set)
+    else:
+        wanted_robots_temp.append(set(r_vector))
+
+    if search_vec[3] != None:
+        temp = []
+        for trait in search_vec[3]:
+            for robot in r_vector:
+                if trait == robot.range:
+                    temp.append(robot)
+        temp_set = set(temp)
+        wanted_robots_temp.append(temp_set)
+    else:
+        wanted_robots_temp.append(set(r_vector))
+
+    if search_vec[4] != None:
+        temp = []
+        for trait in search_vec[4]:
+            for robot in r_vector:
+                if trait == robot.resolution:
+                    temp.append(robot)
+
+        temp_set = set(temp)
+        wanted_robots_temp.append(temp_set)
+    else:
+        wanted_robots_temp.append(set(r_vector))
+
+    wanted_robots = wanted_robots_temp[0].intersection(wanted_robots_temp[1], wanted_robots_temp[2], wanted_robots_temp[3] , wanted_robots_temp[4])
+    return list(wanted_robots)
+
 def robot_object_unpack(robot):
     list =[]
     id = robot.identity
@@ -363,21 +428,25 @@ def robot_object_unpack(robot):
     return list
 
 if __name__ == "__main__":
-    r_vector = r.generate_M_robots(10)
+    r_vector = r.generate_M_robots(2)
     r.print_generated_robots(r_vector)
 
-    # print('\nSearch algorithm on the foregoing robots data.\n')
-    #
-    # print('Would you like to use single trait or vector trait search?')
-    # if decision2():
-    #     found = single_trait_search(r_vector)
-    #     print('\nDetected robots with given parameters:')
-    #     r.print_generated_robots(found)
-    # else:
-    #     search_vec = full_vector_trait()
-    #     found = full_vector_search(r_vector,search_vec)
-    #     print('\nDetected robots with given parameters:')
-    #     r.print_generated_robots(found)
+    print('\nSearch algorithm on the foregoing robots data.\n')
 
-    r = multi_full_vector_trait()
-    print(r)
+    print('Would you like to use single trait or vector trait search?')
+    if decision2():
+        found = single_trait_search(r_vector)
+        print('\nDetected robots with given parameters:')
+        r.print_generated_robots(found)
+    else:
+        print('Would you like to give multiple params to one trait?')
+        if decision():
+            search_vec = multi_full_vector_trait()
+            found = multi_full_vector_search(r_vector, search_vec)
+            print('\nDetected robots with given parameters:')
+            r.print_generated_robots(found)
+        else:
+            search_vec = full_vector_trait()
+            found = full_vector_search(r_vector, search_vec)
+            print('\nDetected robots with given parameters:')
+            r.print_generated_robots(found)
