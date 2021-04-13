@@ -116,7 +116,7 @@ def single_trait_search(r_vector):
                 wanted_robots.append(elem)
             else:
                 print(f"Not found in {elem}")
-            time.sleep(0.5)
+            time.sleep(0.2)
         if len(wanted_robots) == 0:
             return None
         else:
@@ -131,7 +131,7 @@ def single_trait_search(r_vector):
                 wanted_robots.append(elem)
             else:
                 print(f"Not found in {elem}")
-            time.sleep(0.5)
+            time.sleep(0.2)
         if len(wanted_robots) == 0:
             return None
         else:
@@ -146,7 +146,7 @@ def single_trait_search(r_vector):
                 wanted_robots.append(elem)
             else:
                 print(f"Not found in {elem}")
-            time.sleep(0.5)
+            time.sleep(0.2)
         if len(wanted_robots) == 0:
             return None
         else:
@@ -161,7 +161,7 @@ def single_trait_search(r_vector):
                 wanted_robots.append(elem)
             else:
                 print(f"Not found in {elem}")
-            time.sleep(0.5)
+            time.sleep(0.2)
         if len(wanted_robots) == 0:
             return None
         else:
@@ -176,7 +176,7 @@ def single_trait_search(r_vector):
                 wanted_robots.append(elem)
             else:
                 print(f"Not found in {elem}")
-            time.sleep(0.5)
+            time.sleep(0.2)
         if len(wanted_robots) == 0:
             return None
         else:
@@ -336,7 +336,7 @@ def full_vector_search(r_vector, search_vec):
                     else:
                         print(f'Not found in {elem}')
                         temp.append(None)
-                    time.sleep(0.5)
+                    time.sleep(0.2)
             else:
                 if wanted == None:
                     print('Not searching. Param is NoneType')
@@ -349,7 +349,7 @@ def full_vector_search(r_vector, search_vec):
                     else:
                         print(f'Not found in {elem}')
                         temp.append(None)
-                    time.sleep(0.5)
+                    time.sleep(0.2)
             first_item = False
 
         if temp == search_vec:
@@ -365,11 +365,18 @@ def multi_full_vector_search(r_vector, search_vec):
     wanted_robots_temp = []
 
     if search_vec[0] != None:
+        print('\nSearching IDENTITY')
         temp = []
         for trait in search_vec[0]:
             for robot in r_vector:
+                print(f'\nSearching: {trait}')
+                print(f'IDENTITY OF {robot} is {robot.identity}')
                 if trait in robot.identity:
+                    print(f'Found in {robot}')
                     temp.append(robot)
+                else:
+                    print(f'Not found in {robot}')
+                time.sleep(0.2)
 
         temp_set = set(temp)
         wanted_robots_temp.append(temp_set)
@@ -378,44 +385,72 @@ def multi_full_vector_search(r_vector, search_vec):
 
 
     if search_vec[1] != None:
+        print('\nSearching TYPE')
         temp = []
         for trait in search_vec[1]:
             for robot in r_vector:
+                print(f'\nSearching: {trait}')
+                print(f'TYPE OF {robot} is {robot.type}')
                 if trait == robot.type:
+                    print(f'Found in {robot}')
                     temp.append(robot)
+                else:
+                    print(f'Not found in {robot}')
+                time.sleep(0.2)
         temp_set = set(temp)
         wanted_robots_temp.append(temp_set)
     else:
         wanted_robots_temp.append(set(r_vector))
 
     if search_vec[2] != None:
+        print('\nSearching MASS')
         temp = []
         for trait in search_vec[2]:
             for robot in r_vector:
+                print(f'\nSearching: {trait}')
+                print(f'MASS OF {robot} is {robot.mass}')
                 if trait == robot.mass:
+                    print(f'Found in {robot}')
                     temp.append(robot)
+                else:
+                    print(f'Not found in {robot}')
+                time.sleep(0.2)
         temp_set = set(temp)
         wanted_robots_temp.append(temp_set)
     else:
         wanted_robots_temp.append(set(r_vector))
 
     if search_vec[3] != None:
+        print('\nSearching RANGE')
         temp = []
         for trait in search_vec[3]:
             for robot in r_vector:
+                print(f'\nSearching: {trait}')
+                print(f'RANGE OF {robot} is {robot.range}')
                 if trait == robot.range:
+                    print(f'Found in {robot}')
                     temp.append(robot)
+                else:
+                    print(f'Not found in {robot}')
+                time.sleep(0.2)
         temp_set = set(temp)
         wanted_robots_temp.append(temp_set)
     else:
         wanted_robots_temp.append(set(r_vector))
 
     if search_vec[4] != None:
+        print('\nSearching RESOLUTION')
         temp = []
         for trait in search_vec[4]:
             for robot in r_vector:
+                print(f'\nSearching: {trait}')
+                print(f'RESOLUTION OF {robot} is {robot.resolution}')
                 if trait == robot.resolution:
+                    print(f'Found in {robot}')
                     temp.append(robot)
+                else:
+                    print(f'Not found in {robot}')
+                time.sleep(0.2)
 
         temp_set = set(temp)
         wanted_robots_temp.append(temp_set)
@@ -423,7 +458,11 @@ def multi_full_vector_search(r_vector, search_vec):
         wanted_robots_temp.append(set(r_vector))
 
     wanted_robots = wanted_robots_temp[0].intersection(wanted_robots_temp[1], wanted_robots_temp[2], wanted_robots_temp[3] , wanted_robots_temp[4])
-    return list(wanted_robots)
+    wanted_robots = list(wanted_robots)
+    if len(wanted_robots) == 0:
+        return None
+    else:
+        return wanted_robots
 
 def robot_object_unpack(robot):
     list =[]
@@ -440,7 +479,7 @@ def robot_object_unpack(robot):
     return list
 
 if __name__ == "__main__":
-    r_vector = r.generate_M_robots(2)
+    r_vector = r.generate_M_robots(10)
     r.print_generated_robots(r_vector)
 
     print('\nSearch algorithm on the foregoing robots data.\n')
