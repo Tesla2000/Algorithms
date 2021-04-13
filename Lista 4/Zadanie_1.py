@@ -212,6 +212,21 @@ def decision2():
         except Exception as err:
             print(err)
 
+def decision3():
+    while True:
+        try:
+            print('\nAdd another?')
+            decision = input("Y\\N? :")
+            decision = decision.upper()
+            if decision == 'Y':
+                return True
+            elif decision == 'N':
+                return False
+            else:
+                print('Wrong input')
+
+        except Exception as err:
+            print(err)
 
 def full_vector_trait():
     search_vector = []
@@ -244,6 +259,59 @@ def full_vector_trait():
         search_vector.append(None)
 
     return search_vector
+
+def multi_full_vector_trait():
+    search_vector = []
+    print('\nMULTI FULL VECTOR SEARCH')
+    print('Whick traits you want to use for search?')
+    print('Identity?')
+    if decision():
+        identity = []
+        identity.append(choose_char_chain())
+        while decision3():
+            identity.append(choose_char_chain())
+        search_vector.append(identity)
+    else:
+        search_vector.append(None)
+    print('\nAdd Type trait to use for search?')
+    if decision():
+        type = []
+        type.append(choose_type())
+        while decision3():
+            type.append(choose_type())
+        search_vector.append(type)
+    else:
+        search_vector.append(None)
+    print('\nAdd Mass trait to use for search?')
+    if decision():
+        mass = []
+        mass.append(choose_mass())
+        while decision3():
+            mass.append(choose_mass())
+        search_vector.append(mass)
+    else:
+        search_vector.append(None)
+    print('\nAdd Range trait to use for search?')
+    if decision():
+        range = []
+        range.append(choose_range())
+        while decision3():
+            range.append(choose_range())
+        search_vector.append(range)
+    else:
+        search_vector.append(None)
+    print('\nAdd Resolution trait to use for search?')
+    if decision():
+        resolution = []
+        resolution.append(choose_resolution())
+        while decision3():
+            resolution.append(choose_resolution())
+        search_vector.append(resolution)
+    else:
+        search_vector.append(None)
+
+    return search_vector
+
 
 def full_vector_search(r_vector, search_vec):
     print(f'\nSearching following vector: {search_vec}')
@@ -298,15 +366,18 @@ if __name__ == "__main__":
     r_vector = r.generate_M_robots(10)
     r.print_generated_robots(r_vector)
 
-    print('\nSearch algorithm on the foregoing robots data.\n')
+    # print('\nSearch algorithm on the foregoing robots data.\n')
+    #
+    # print('Would you like to use single trait or vector trait search?')
+    # if decision2():
+    #     found = single_trait_search(r_vector)
+    #     print('\nDetected robots with given parameters:')
+    #     r.print_generated_robots(found)
+    # else:
+    #     search_vec = full_vector_trait()
+    #     found = full_vector_search(r_vector,search_vec)
+    #     print('\nDetected robots with given parameters:')
+    #     r.print_generated_robots(found)
 
-    print('Would you like to use single trait or vector trait search?')
-    if decision2():
-        found = single_trait_search(r_vector)
-        print('\nDetected robots with given parameters:')
-        r.print_generated_robots(found)
-    else:
-        search_vec = full_vector_trait()
-        found = full_vector_search(r_vector,search_vec)
-        print('\nDetected robots with given parameters:')
-        r.print_generated_robots(found)
+    r = multi_full_vector_trait()
+    print(r)
