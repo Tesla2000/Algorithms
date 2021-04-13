@@ -317,6 +317,8 @@ def full_vector_search(r_vector, search_vec):
     print(f'\nSearching following vector: {search_vec}')
     wanted_robots = []
     for elem in r_vector:
+        print(f'\nSearching in: {elem}')
+        print('Searching: Identity, Type, Mass, Rang, Resolution')
         ziped = zip(robot_object_unpack(elem),search_vec)
 
         temp = []
@@ -324,20 +326,30 @@ def full_vector_search(r_vector, search_vec):
         for original, wanted in ziped:
             if first_item:
                 if wanted == None:
+                    print('Not searching. Param is NoneType')
                     temp.append(None)
                 else:
+                    print(f'Searching: {wanted}')
                     if str(wanted) in str(original):
+                        print(f'Found in {elem}')
                         temp.append(wanted)
                     else:
+                        print(f'Not found in {elem}')
                         temp.append(None)
+                    time.sleep(0.5)
             else:
                 if wanted == None:
+                    print('Not searching. Param is NoneType')
                     temp.append(None)
                 else:
+                    print(f'Searching: {wanted}')
                     if str(wanted) == str(original):
+                        print(f'Found in {elem}')
                         temp.append(wanted)
                     else:
+                        print(f'Not found in {elem}')
                         temp.append(None)
+                    time.sleep(0.5)
             first_item = False
 
         if temp == search_vec:
