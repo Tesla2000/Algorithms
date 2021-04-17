@@ -1,4 +1,5 @@
 import numpy as np
+from time import sleep
 
 import robot as r
 from Zadanie_1 import multi_full_vector_trait
@@ -39,6 +40,8 @@ def binary_search_identity(A, x):
 
     while left <= right:
         mid = (left + right) // 2
+        print(f'Searching in {A[mid]} (middle object)')
+        sleep(0.2)
         if x == A[mid].identity:
             result = mid
             right = mid - 1
@@ -57,6 +60,8 @@ def binary_search_type(A, x):
 
     while left <= right:
         mid = (left + right) // 2
+        print(f'Searching in {A[mid]} (middle object)')
+        sleep(0.2)
         if x == A[mid].type:
             result = mid
             right = mid - 1
@@ -75,6 +80,8 @@ def binary_search_range(A, x):
 
     while left <= right:
         mid = (left + right) // 2
+        print(f'Searching in {A[mid]} (middle object)')
+        sleep(0.2)
         if x == A[mid].range:
             result = mid
             right = mid - 1
@@ -93,6 +100,8 @@ def binary_search_mass(A, x):
 
     while left <= right:
         mid = (left + right) // 2
+        print(f'Searching in {A[mid]} (middle object)')
+        sleep(0.2)
         if x == A[mid].mass:
             result = mid
             right = mid - 1
@@ -111,6 +120,8 @@ def binary_search_resolution(A, x):
 
     while left <= right:
         mid = (left + right) // 2
+        print(f'Searching in {A[mid]} (middle object)')
+        sleep(0.2)
         if x == A[mid].resolution:
             result = mid
             right = mid - 1
@@ -125,6 +136,7 @@ def binary_search_resolution(A, x):
 def binary_search_main(sorted_robots, search_vector, sorted_indexes):
     identity_indexes = []
     if search_vector[0] != None:
+        print(f'\nSearching for {search_vector[0]} in IDENTITY')
         result = binary_search_type(sorted_robots[0], search_vector[0])
         identity_indexes.append(result)
         if result != None:
@@ -139,6 +151,7 @@ def binary_search_main(sorted_robots, search_vector, sorted_indexes):
     
     type_indexes = []
     if search_vector[1] != None:
+        print(f'\nSearching for {search_vector[1]} in TYPE')
         result = binary_search_type(sorted_robots[1], search_vector[1])
         type_indexes.append(result)
         if result != None:
@@ -153,6 +166,7 @@ def binary_search_main(sorted_robots, search_vector, sorted_indexes):
                 
     mass_indexes = []
     if search_vector[2] != None:
+        print(f'\nSearching for {search_vector[2]} in MASS')
         result = binary_search_mass(sorted_robots[2], search_vector[2])
         mass_indexes.append(result)
         if result != None:
@@ -167,6 +181,7 @@ def binary_search_main(sorted_robots, search_vector, sorted_indexes):
                 
     range_indexes = []
     if search_vector[3] != None:
+        print(f'\nSearching for {search_vector[3]} in TYPE')
         result = binary_search_range(sorted_robots[3], search_vector[3])
         range_indexes.append(result)
         if result != None:
@@ -181,6 +196,7 @@ def binary_search_main(sorted_robots, search_vector, sorted_indexes):
     
     resolution_indexes = []
     if search_vector[4] != None:
+        print(f'\nSearching for {search_vector[4]} in TYPE')
         result = binary_search_resolution(sorted_robots[4], search_vector[4])
         resolution_indexes.append(result)
         if result != None:
@@ -213,15 +229,16 @@ def find_common(result, robots):
 
 
 if __name__ == '__main__':
-    robots = r.generate_M_robots(1000)
-    r.print_generated_robots(robots)
+    robots = r.generate_M_robots(99999)
+    #r.print_generated_robots(robots)
 
     sorted_indexes = sorted_index_vector(robots)
     s_robots = sorted_robots(robots, sorted_indexes)
+    params = [None, None, 600, None, 1]
 
-    result = binary_search_main(s_robots, [None, None, 600, None, None], sorted_indexes)
+    result = binary_search_main(s_robots, params, sorted_indexes)
 
     wanted_robots = find_common(result, robots)
-    print('\nDetected robots with given parameters:')
+    print(f'\nDetected robots with given parameters ({params}):')
     r.print_generated_robots(wanted_robots)
 
