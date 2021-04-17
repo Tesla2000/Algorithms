@@ -1,6 +1,7 @@
 import numpy as np
 
 import robot as r
+from Zadanie_1 import multi_full_vector_trait
 
 def sorted_identity_vector(r_vector):
     identity = []
@@ -24,8 +25,8 @@ def sorted_identity_vector(r_vector):
 
     return [identity_index, type_index, mass_index, range_index, res_index]
 
-def sorted_robots(r_vector, sorted_indexes, param):
-    return [r_vector[i] for i in sorted_indexes[param]]
+def sorted_robots(r_vector, sorted_indexes, trait_to_sort_by):
+    return [r_vector[i] for i in sorted_indexes[trait_to_sort_by]]
 
 if __name__ == '__main__':
     robots = r.generate_M_robots(10)
@@ -34,3 +35,5 @@ if __name__ == '__main__':
     indexes = sorted_identity_vector(robots)
 
     r.print_generated_robots(sorted_robots(robots, indexes, 4))
+
+    search_vec = multi_full_vector_trait()
