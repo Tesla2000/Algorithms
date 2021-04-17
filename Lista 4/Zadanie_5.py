@@ -204,7 +204,7 @@ def find_common(result, robots):
             result_without_empty.append(elem)
     result_without_empty = set.intersection(*map(set,result_without_empty))
 
-    if result_without_empty:
+    if result_without_empty and None not in result_without_empty:
         for elem in list(result_without_empty):
             wanted_robots.append(robots[elem])
         return wanted_robots
@@ -218,7 +218,6 @@ if __name__ == '__main__':
 
     sorted_indexes = sorted_index_vector(robots)
     s_robots = sorted_robots(robots, sorted_indexes)
-    r.print_generated_robots(s_robots[2])
 
     result = binary_search_main(s_robots, [None, None, 600, None, None], sorted_indexes)
 
