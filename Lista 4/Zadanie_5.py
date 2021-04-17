@@ -3,7 +3,7 @@ import numpy as np
 import robot as r
 from Zadanie_1 import multi_full_vector_trait
 
-def sorted_identity_vector(r_vector):
+def sorted_index_vector(r_vector):
     identity = []
     type = []
     mass = []
@@ -25,15 +25,34 @@ def sorted_identity_vector(r_vector):
 
     return [identity_index, type_index, mass_index, range_index, res_index]
 
-def sorted_robots(r_vector, sorted_indexes, trait_to_sort_by):
-    return [r_vector[i] for i in sorted_indexes[trait_to_sort_by]]
+def sorted_robots(r_vector, sorted_indexes):
+    s_robots = []
+    for trait in range(len(sorted_indexes)):
+        s_robots.append([r_vector[i] for i in sorted_indexes[trait]])
+
+    return s_robots
+
+def binary_search(array, element, start, end):
+    if start > end:
+        return None
+
+    mid = (start + end) // 2
+    if element == array[mid].mass:
+        return mid
+
+    if element < array[mid].mass:
+        return binary_search(array, element, start, mid-1)
+    else:
+        return binary_search(array, element, mid+1, end)
 
 if __name__ == '__main__':
     robots = r.generate_M_robots(10)
     r.print_generated_robots(robots)
 
-    indexes = sorted_identity_vector(robots)
+    sorted_indexes = sorted_index_vector(robots)
+    s_robots = sorted_robots(robots, sorted_indexes)
+    for elem in s_robots:
+        r.print_generated_robots(elem)
 
-    r.print_generated_robots(sorted_robots(robots, indexes, 4))
+    print(binary_search(s_robots, 50, 0, len(s_robots[0])))
 
-    search_vec = multi_full_vector_trait()
