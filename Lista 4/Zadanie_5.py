@@ -2,7 +2,6 @@ import numpy as np
 from time import sleep
 
 import robot as r
-from Zadanie_1 import multi_full_vector_trait
 
 def sorted_index_vector(r_vector):
     identity = []
@@ -181,7 +180,7 @@ def binary_search_main(sorted_robots, search_vector, sorted_indexes):
                 
     range_indexes = []
     if search_vector[3] != None:
-        print(f'\nSearching for {search_vector[3]} in TYPE')
+        print(f'\nSearching for {search_vector[3]} in RANGE')
         result = binary_search_range(sorted_robots[3], search_vector[3])
         range_indexes.append(result)
         if result != None:
@@ -196,7 +195,7 @@ def binary_search_main(sorted_robots, search_vector, sorted_indexes):
     
     resolution_indexes = []
     if search_vector[4] != None:
-        print(f'\nSearching for {search_vector[4]} in TYPE')
+        print(f'\nSearching for {search_vector[4]} in RESOLUTION')
         result = binary_search_resolution(sorted_robots[4], search_vector[4])
         resolution_indexes.append(result)
         if result != None:
