@@ -20,8 +20,24 @@ def quicksort(array):
     else:
         return array
 
+
+def r_list(robot_vector):
+    identity = []
+    type_r = []
+    mass = []
+    range_r = []
+    resolution = []
+    for robot in robot_vector:
+        identity.append(robot.identity)
+        type_r.append(robot.type)
+        mass.append(robot.mass)
+        range_r.append(robot.range)
+        resolution.append(robot.resolution)
+    return identity, type_r, mass, range_r, resolution
+
+
 if __name__ == "__main__":
     r_vector = r.generate_M_robots(10)
     r.print_generated_robots(r_vector)
 
-    print(quicksort([23, 4, 45, -34, 4, 6, 7]))
+    print(quicksort(r_list(r_vector)[2]))
