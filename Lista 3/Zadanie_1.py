@@ -1,15 +1,22 @@
 from math import sqrt
 
-def primes(n):
-    primes = []
-    k = 2
-    while n != 1:
-        while n % k == 0:
-            n //= k
-            primes.append(k)
-        k += 1
+def fun(n, l):
+    if x%n==0:
+        if check_prime(n):
+            l.append(n)
+    if n==1:
+         return None
+    fun(n-1, l)
 
-    return primes
+def check_prime(num):
+    if num > 1:
+        for i in range(2, int(num / 2) + 1):
+            if (num % i) == 0:
+                return False
+        else:
+            return True
+    else:
+        return False
 
 def since_till(since, till):
     zw = []
@@ -33,8 +40,10 @@ def net(till):
         i = tab.index(current) + 1
         current = tab[i]
 
-prime_numbers = net(100)
-for prime in prime_numbers:
-    print(prime)
+x=24
+l=[]
+fun(x, l)
+print(l)
 
-print(primes(24))
+prime_numbers = net(100)
+print(prime_numbers)

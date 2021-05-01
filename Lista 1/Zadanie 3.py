@@ -91,7 +91,7 @@ def dictionary_nodes(connections,nodes):
     return dic
 
 
-def distance_between_two_random_nodes(graph,start,goal):
+def distance_between_two_nodes(graph,start,goal):
     explored = []
 
     # Queue for traversing the
@@ -160,7 +160,7 @@ g = nx.Graph()
 g.add_nodes_from(nodes)  #add our nodes
 connections = tree(nodes,organized_distance)
 dic_of_connections = dictionary_nodes(connections,nodes_name_list(10))
-path = distance_between_two_random_nodes(dic_of_connections,3,5)
+path = distance_between_two_nodes(dic_of_connections,3,5)
 distance_path(path,organized_distance)
 
 nx.draw(g, gpos, with_labels=True, node_color='maroon', font_size="10", node_shape='o', font_color="white")

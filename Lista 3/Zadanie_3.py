@@ -47,8 +47,8 @@ def test(number, number_of_iterations):
         print(f'Miller-Rabin test. Is primal? {miller_rabin(number, number_of_iterations)}')
 
 
-number_of_iterations = 20
-number = 34141
+number_of_iterations = 5
+number = 16
 
 test(number, number_of_iterations)
 

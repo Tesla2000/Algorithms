@@ -52,16 +52,18 @@ def main():
     times_euc = []
     for i in range(get_number()):
         t1 = get_time()
+        aczp(12, 24)
         t2 = get_time()
         delta1 = t2-t1
         delta1 = delta1.total_seconds()
         times_aczp.append(delta1)
         t1 = get_time()
+        aeuc(12, 24)
         t2 = get_time()
         delta2 = t2 - t1
         delta2 = delta2.total_seconds()
         times_euc.append(delta2)
-        if delta1 >=300 or delta2 >= 300:
+        if delta1 >= 300 or delta2 >= 300:
             print('Too long')
             break
 

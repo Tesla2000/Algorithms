@@ -229,7 +229,7 @@ def find_common(result, robots):
 
 if __name__ == '__main__':
     robots = r.generate_M_robots(99999)
-    #r.print_generated_robots(robots)
+    r.print_generated_robots(robots)
 
     sorted_indexes = sorted_index_vector(robots)
     s_robots = sorted_robots(robots, sorted_indexes)

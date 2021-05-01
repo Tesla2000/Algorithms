@@ -3,6 +3,7 @@ import time
 
 import robot as r
 
+
 def choose_trait():
     print('\nChoose trait to be searched')
     t = PrettyTable(['CHOOSE:', ''])
@@ -16,7 +17,7 @@ def choose_trait():
     while True:
         try:
             number = int(input("Type number: "))
-            if number in [1,2,3,4,5]:
+            if number in [1, 2, 3, 4, 5]:
                 return number
             else:
                 print('\nInvalid number')
@@ -24,6 +25,7 @@ def choose_trait():
         except Exception as err:
             print(err)
             print(t)
+
 
 def choose_char_chain():
     print('\nType identity to be searched')
@@ -37,6 +39,7 @@ def choose_char_chain():
         except Exception as err:
             print(err)
 
+
 def choose_type():
     print(f'\nType one of the following types to be searched: "AGV", "AFV", "AUV"')
 
@@ -49,7 +52,7 @@ def choose_type():
     while True:
         try:
             number = int(input("Type number: "))
-            if number in [1,2,3]:
+            if number in [1, 2, 3]:
                 if number == 1:
                     return 'AGV'
                 elif number == 2:
@@ -63,44 +66,48 @@ def choose_type():
             print(err)
             print(t)
 
+
 def choose_mass():
     print('\nType the mass of robot to be searched')
     while True:
         try:
             int_mass = int(input("Type mass: "))
-            if int_mass < 50 or int_mass >2000:
+            if int_mass < 50 or int_mass > 2000:
                 print('All robots mass is between 50 and 2000')
             else:
-                return  int_mass
+                return int_mass
 
         except Exception as err:
             print(err)
+
 
 def choose_range():
     print('\nType the range of robot to be searched')
     while True:
         try:
             int_range = int(input("Type range: "))
-            if int_range < 0 or int_range >1000:
+            if int_range < 0 or int_range > 1000:
                 print('All robots range is between 0 and 1000')
             else:
-                return  int_range
+                return int_range
 
         except Exception as err:
             print(err)
+
 
 def choose_resolution():
     print('\nType the resolution of robot to be searched')
     while True:
         try:
             int_res = int(input("Type resolution: "))
-            if int_res < 1 or int_res >30:
+            if int_res < 1 or int_res > 30:
                 print('All robots resolution is between 1 and 30')
             else:
-                return  int_res
+                return int_res
 
         except Exception as err:
             print(err)
+
 
 def single_trait_search(r_vector):
     trait = choose_trait()
@@ -182,6 +189,7 @@ def single_trait_search(r_vector):
         else:
             return wanted_robots
 
+
 def decision():
     while True:
         try:
@@ -196,6 +204,7 @@ def decision():
 
         except Exception as err:
             print(err)
+
 
 def decision2():
     while True:
@@ -212,6 +221,7 @@ def decision2():
         except Exception as err:
             print(err)
 
+
 def decision3():
     while True:
         try:
@@ -227,6 +237,7 @@ def decision3():
 
         except Exception as err:
             print(err)
+
 
 def full_vector_trait():
     search_vector = []
@@ -259,6 +270,7 @@ def full_vector_trait():
         search_vector.append(None)
 
     return search_vector
+
 
 def multi_full_vector_trait():
     search_vector = []
