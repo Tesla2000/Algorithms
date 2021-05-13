@@ -1,7 +1,7 @@
 from prettytable import PrettyTable
 
 import robot as r
-
+from Zadanie_2 import ro_list, count_sort
 
 def quicksort(array):
 
@@ -11,13 +11,18 @@ def quicksort(array):
 
     if len(array) > 1:
         pivot = array[0]
+        print(f'\nPivot: {pivot}')
         for elem in array:
             if elem < pivot:
+                print(f'{elem} < {pivot}: less appended')
                 less.append(elem)
             elif elem == pivot:
+                print(f'{elem} == {pivot}: equal appended')
                 equal.append(elem)
             elif elem > pivot:
+                print(f'{elem} > {pivot}: equal appended')
                 greater.append(elem)
+        print(f'Less: {less}\nEqual: {equal}\nGreater: {greater}')
         return quicksort(less) + equal + quicksort(greater)
     else:
         return array
@@ -67,3 +72,9 @@ if __name__ == "__main__":
 
     trait = choose_trait()
     print(f'Sorted in relation to given trait: {quicksort(r_list(r_vector)[trait])}')
+
+
+    res_list = ro_list(r_vector)
+    n = len(res_list)
+
+    print(f'Sorted resolution: {count_sort(res_list, n)}')
