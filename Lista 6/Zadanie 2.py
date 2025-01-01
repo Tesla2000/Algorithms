@@ -1,11 +1,15 @@
 import re
+from collections.abc import Iterable
+from collections.abc import Sequence
+from typing import Union
+
 from prettytable import PrettyTable
 
 class HuffmanCode:
-    def __init__(self,probability):
+    def __init__(self,probability: Sequence):
         self.probability = probability
 
-    def position(self, value, index):
+    def position(self, value, index: Union[complex, float, int]):
         for j in range(len(self.probability)):
             if(value >= self.probability[j]):
                 return j
@@ -63,7 +67,7 @@ class HuffmanCode:
         final_code = sorted(final_code, key=len)
         return final_code
 
-def freq(word):
+def freq(word: Iterable):
 # count frequncies of letter in given word
     freq = {}
     for letter in word:

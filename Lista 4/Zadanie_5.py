@@ -1,9 +1,17 @@
-import numpy as np
+from collections.abc import Iterable
+from collections.abc import Mapping
+from collections.abc import Sequence
 from time import sleep
 
+import numpy as np
 import robot as r
 
-def sorted_index_vector(r_vector):
+from protocols.protocols import ASubscript
+from protocols.protocols import RobotvectorSubscript
+from protocols.protocols import RvectorSubscript
+from protocols.protocols import SortedrobotsSubscriptSubscript
+
+def sorted_index_vector(r_vector: Iterable[RvectorSubscript]):
     identity = []
     type = []
     mass = []
@@ -25,7 +33,7 @@ def sorted_index_vector(r_vector):
 
     return [identity_index, type_index, mass_index, range_index, res_index]
 
-def sorted_robots(r_vector, sorted_indexes):
+def sorted_robots(r_vector: Mapping, sorted_indexes: Sequence[Iterable]):
     s_robots = []
     for trait in range(len(sorted_indexes)):
         s_robots.append([r_vector[i] for i in sorted_indexes[trait]])
@@ -33,7 +41,7 @@ def sorted_robots(r_vector, sorted_indexes):
     return s_robots
 
 
-def binary_search_identity(A, x):
+def binary_search_identity(A: Sequence[ASubscript], x):
     (left, right) = (0, len(A) - 1)
     result = None
 
@@ -52,7 +60,7 @@ def binary_search_identity(A, x):
 
     return result
 
-def binary_search_type(A, x):
+def binary_search_type(A: Sequence[ASubscript], x):
 
     (left, right) = (0, len(A) - 1)
     result = None
@@ -72,7 +80,7 @@ def binary_search_type(A, x):
 
     return result
 
-def binary_search_range(A, x):
+def binary_search_range(A: Sequence[ASubscript], x):
 
     (left, right) = (0, len(A) - 1)
     result = None
@@ -92,7 +100,7 @@ def binary_search_range(A, x):
 
     return result
 
-def binary_search_mass(A, x):
+def binary_search_mass(A: Sequence[ASubscript], x):
 
     (left, right) = (0, len(A) - 1)
     result = None
@@ -112,7 +120,7 @@ def binary_search_mass(A, x):
 
     return result
 
-def binary_search_resolution(A, x):
+def binary_search_resolution(A: Sequence[RobotvectorSubscript], x):
 
     (left, right) = (0, len(A) - 1)
     result = None
@@ -132,7 +140,7 @@ def binary_search_resolution(A, x):
 
     return result
 
-def binary_search_main(sorted_robots, search_vector, sorted_indexes):
+def binary_search_main(sorted_robots: Sequence[Sequence[SortedrobotsSubscriptSubscript]], search_vector: Sequence, sorted_indexes: Sequence[Sequence]):
     identity_indexes = []
     if search_vector[0] != None:
         print(f'\nSearching for {search_vector[0]} in IDENTITY')
@@ -210,7 +218,7 @@ def binary_search_main(sorted_robots, search_vector, sorted_indexes):
 
     return [identity_indexes, type_indexes, mass_indexes, range_indexes, resolution_indexes]
 
-def find_common(result, robots):
+def find_common(result: Iterable, robots: Sequence):
     result_without_empty = []
     wanted_robots = []
 
@@ -240,4 +248,3 @@ if __name__ == '__main__':
     wanted_robots = find_common(result, robots)
     print(f'\nDetected robots with given parameters ({params}):')
     r.print_generated_robots(wanted_robots)
-

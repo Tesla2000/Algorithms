@@ -1,9 +1,12 @@
-import networkx as nx
-import matplotlib.pyplot as plt
 import random as rd
+from collections.abc import Iterable
+from collections.abc import MutableSequence
 from itertools import combinations
 
-def nodes_cord(number_of_nodes,nodes):              #generate cordinates of nodes
+import matplotlib.pyplot as plt
+import networkx as nx
+
+def nodes_cord(number_of_nodes,nodes: Iterable):              #generate cordinates of nodes
     iterations = 0
     nodes_cordinates = {}
     while len(nodes_cordinates) < number_of_nodes:      #to count iterations and quit if greater than 100
@@ -23,7 +26,7 @@ def nodes_name_list(number_of_nodes):       #list of nodes
         nodes.append(i + 1)
     return nodes
 
-def delete_edges(edges):            #delete random edges
+def delete_edges(edges: MutableSequence):            #delete random edges
     for i in range(rd.randint(30, 35)):
         random_edge_to_be_deleted = rd.choice(edges)
         edges.remove(random_edge_to_be_deleted)

@@ -1,15 +1,19 @@
-import networkx as nx
+from collections.abc import Iterable
+from collections.abc import Mapping
+from collections.abc import Sequence
+
 import matplotlib.pyplot as plt
+import networkx as nx
 import numpy as np
 
-def add_nodes(VV,Vx,Vy):
+def add_nodes(VV: Iterable,Vx: Mapping,Vy: Mapping):
     gpos = {}
     for v in VV:
         g.add_node(v)  # add nodes
         gpos[v] = [Vx[v], Vy[v]]  # dictionary of cordinates {'id':[xcord,ycord]
     return gpos
 
-def add_labels(Vx,Vy,VV,WW):
+def add_labels(Vx: Mapping,Vy: Mapping,VV: Iterable,WW):
     for v1 in VV:
         for v2 in VV:
             if (v1, v2) in WW:
@@ -17,7 +21,7 @@ def add_labels(Vx,Vy,VV,WW):
                 label = round(label, 2)
                 g.add_weighted_edges_from([(v1, v2, str(label))])  # add edge
 
-def dictionary_nodes(connections,nodes):
+def dictionary_nodes(connections: Iterable[Iterable],nodes: Iterable):
     dic = {}
 
     for node in nodes:
@@ -34,13 +38,13 @@ def dictionary_nodes(connections,nodes):
         dic[node] = nodes_connected
     return dic
 
-def same(lista):    #sprawdza czy jest poprawne polaczenie,czy w WW pary maja te same wartosci
+def same(lista: Sequence):    #sprawdza czy jest poprawne polaczenie,czy w WW pary maja te same wartosci
     for i in WW:    #jezeli maja to zwraca false
         if lista[i[0]-1]==lista[i[1]-1]:
             return False
     return True
 
-def ok(VV):            #przejscie wszystkich mozliwych mozliwosci
+def ok(VV: Iterable):            #przejscie wszystkich mozliwych mozliwosci
     n = 3
     done = []
     for _ in VV:
@@ -81,4 +85,3 @@ for i in range(10):
 
 nx.draw(g,add_nodes(VV,Vx,Vy), labels=rename, with_labels = True)
 plt.show()
-

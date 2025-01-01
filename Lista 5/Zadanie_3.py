@@ -1,9 +1,14 @@
-from prettytable import PrettyTable
+from collections.abc import Iterable
+from collections.abc import Sequence
 
 import robot as r
-from Zadanie_2 import ro_list, count_sort
+from prettytable import PrettyTable
+from Zadanie_2 import count_sort
+from Zadanie_2 import ro_list
 
-def quicksort(array):
+from protocols.protocols import RvectorSubscript
+
+def quicksort(array: Sequence):
 
     less = []
     equal = []
@@ -28,7 +33,7 @@ def quicksort(array):
         return array
 
 
-def r_list(robot_vector):
+def r_list(robot_vector: Iterable[RvectorSubscript]):
     identity = []
     type_r = []
     mass = []

@@ -1,7 +1,13 @@
+from collections.abc import Iterable
+from collections.abc import MutableSequence
+from collections.abc import Sequence
+
 import robot as r
 
+from protocols.protocols import RobotvectorSubscript
 
-def minmax_f(tab):
+
+def minmax_f(tab: Sequence):
     min_n = tab[0]
     max_n = tab[0]
     for el in tab:
@@ -13,7 +19,7 @@ def minmax_f(tab):
     return min_n, max_n
 
 
-def count_sort(tab, lenght):
+def count_sort(tab: MutableSequence, lenght):
     minmax = minmax_f(tab)
     min_n = minmax[0]
     max_n = minmax[1]
@@ -41,7 +47,7 @@ def count_sort(tab, lenght):
     return sorted_res
 
 
-def ro_list(robot_vector):
+def ro_list(robot_vector: Iterable[RobotvectorSubscript]):
     resolution = []
     for robot in robot_vector:
         resolution.append(robot.resolution)

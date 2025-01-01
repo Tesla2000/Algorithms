@@ -1,10 +1,17 @@
-import networkx as nx
-import matplotlib.pyplot as plt
 import random as rd
+from collections.abc import Iterable
+from collections.abc import Mapping
+from collections.abc import MutableSequence
+from collections.abc import Sequence
 from itertools import combinations
 from math import sqrt
+from typing import Any
+from typing import Union
 
-def nodes_cord(number_of_nodes,nodes):       #function to return dictionary of lists random cordinates of nodes on 100x100 {'id':'[cordx,cordy]'}
+import matplotlib.pyplot as plt
+import networkx as nx
+
+def nodes_cord(number_of_nodes,nodes: Iterable):       #function to return dictionary of lists random cordinates of nodes on 100x100 {'id':'[cordx,cordy]'}
     iterations = 0
     nodes_cordinates = {}
     while len(nodes_cordinates) < number_of_nodes:      #to count iterations and quit if greater than 100
@@ -24,7 +31,7 @@ def nodes_name_list(number_of_nodes):   #return list of numbers to n, nodes name
         nodes.append(i + 1)
     return nodes
 
-def distance_calc(edges,gpos):      #calculate distance between each node
+def distance_calc(edges: Iterable[Sequence],gpos: Sequence):      #calculate distance between each node
     distance = []
     for items in edges:
         x_diff = abs(gpos[items[0]][0] - gpos[items[1]][0])
@@ -44,7 +51,7 @@ def lists_of_edges_for_every_node():
         temp[i:i] = [999]     #add 999 e.g. 1-1,2-2 etc
     return test
 
-def tree(nodes,organized_distance):             #function to connect all nodes,
+def tree(nodes: MutableSequence,organized_distance: Sequence):             #function to connect all nodes,
     nodes_used = []
     connections = []
     temp_node= rd.choice(nodes)
@@ -73,7 +80,7 @@ def tree(nodes,organized_distance):             #function to connect all nodes,
         connections.append([temp_node, node_to_connect])
     return connections
 
-def dictionary_nodes(connections,nodes):
+def dictionary_nodes(connections: Iterable[Iterable],nodes: Iterable):
     dic = {}
 
     for node in nodes:
@@ -91,7 +98,7 @@ def dictionary_nodes(connections,nodes):
     return dic
 
 
-def distance_between_two_nodes(graph,start,goal):
+def distance_between_two_nodes(graph: Mapping[Any, Iterable],start,goal):
     explored = []
 
     # Queue for traversing the
@@ -136,7 +143,7 @@ def distance_between_two_nodes(graph,start,goal):
 
     return
 
-def distance_path(path,distance):
+def distance_path(path: Sequence[Union[complex, float, int]],distance: Sequence[Sequence[Union[complex, float, int]]]):
     for elem in distance:
         print(elem)
     path_dis = 0
@@ -165,7 +172,3 @@ distance_path(path,organized_distance)
 
 nx.draw(g, gpos, with_labels=True, node_color='maroon', font_size="10", node_shape='o', font_color="white")
 plt.show()
-
-
-
-

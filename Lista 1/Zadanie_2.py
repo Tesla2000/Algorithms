@@ -1,10 +1,14 @@
-import networkx as nx
-import matplotlib.pyplot as plt
 import random as rd
+from collections.abc import Iterable
+from collections.abc import MutableSequence
+from collections.abc import Sequence
 from itertools import combinations
 from math import sqrt
 
-def nodes_cord(number_of_nodes,nodes):       #function to return dictionary of lists random cordinates of nodes on 100x100 {'id':'[cordx,cordy]'}
+import matplotlib.pyplot as plt
+import networkx as nx
+
+def nodes_cord(number_of_nodes,nodes: Iterable):       #function to return dictionary of lists random cordinates of nodes on 100x100 {'id':'[cordx,cordy]'}
     iterations = 0
     nodes_cordinates = {}
     while len(nodes_cordinates) < number_of_nodes:      #to count iterations and quit if greater than 100
@@ -24,7 +28,7 @@ def nodes_name_list(number_of_nodes):   #return list of numbers to n, nodes name
         nodes.append(i + 1)
     return nodes
 
-def distance_calc(edges,gpos):      #calculate distance between each node
+def distance_calc(edges: Iterable[Sequence],gpos: Sequence):      #calculate distance between each node
     distance = []
     for items in edges:
         x_diff = abs(gpos[items[0]][0] - gpos[items[1]][0])
@@ -44,7 +48,7 @@ def lists_of_edges_for_every_node():
         temp[i:i] = [999]     #add 999 e.g. 1-1,2-2 etc
     return test
 
-def tree(nodes,organized_distance):             #function to connect all nodes,
+def tree(nodes: MutableSequence,organized_distance: Sequence):             #function to connect all nodes,
     nodes_used = []
     temp_node= rd.choice(nodes)
     nodes.remove(temp_node)                     #random 2 nodes and connect them
@@ -91,7 +95,3 @@ for elem in organized_distance:
 g = nx.Graph()
 g.add_nodes_from(nodes)  #add our nodes
 tree(nodes,organized_distance)
-
-
-
-

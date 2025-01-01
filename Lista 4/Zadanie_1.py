@@ -1,7 +1,11 @@
-from prettytable import PrettyTable
 import time
+from collections.abc import Iterable
+from collections.abc import Sequence
 
 import robot as r
+from prettytable import PrettyTable
+
+from protocols.protocols import RvectorSubscript
 
 
 def choose_trait():
@@ -109,7 +113,7 @@ def choose_resolution():
             print(err)
 
 
-def single_trait_search(r_vector):
+def single_trait_search(r_vector: Iterable[RvectorSubscript]):
     trait = choose_trait()
     wanted_robots = []
 
@@ -325,7 +329,7 @@ def multi_full_vector_trait():
     return search_vector
 
 
-def full_vector_search(r_vector, search_vec):
+def full_vector_search(r_vector: Iterable, search_vec):
     print(f'\nSearching following vector: {search_vec}')
     wanted_robots = []
     for elem in r_vector:
@@ -372,7 +376,7 @@ def full_vector_search(r_vector, search_vec):
     else:
         return wanted_robots
 
-def multi_full_vector_search(r_vector, search_vec):
+def multi_full_vector_search(r_vector: Iterable[RvectorSubscript], search_vec: Sequence[Iterable]):
     print(f'\nSearching following vector: {search_vec}')
     wanted_robots_temp = []
 
@@ -476,7 +480,7 @@ def multi_full_vector_search(r_vector, search_vec):
     else:
         return wanted_robots
 
-def robot_object_unpack(robot):
+def robot_object_unpack(robot: RvectorSubscript):
     list =[]
     id = robot.identity
     list.append(id)

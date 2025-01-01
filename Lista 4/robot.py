@@ -1,9 +1,16 @@
+import csv
 import random
 import string
-from prettytable import PrettyTable
-import csv
+from collections.abc import Iterable
 
-class Robot():
+from prettytable import PrettyTable
+
+from protocols.protocols import ASubscript
+from protocols.protocols import RobotvectorSubscript
+from protocols.protocols import RvectorSubscript
+from protocols.protocols import SortedrobotsSubscriptSubscript
+
+class Robot(ASubscript, RobotvectorSubscript, RvectorSubscript, SortedrobotsSubscriptSubscript):
 
     def __init__(self):
         '''Inicjalizacja robota'''
@@ -41,7 +48,7 @@ def generate_M_robots(M):
     return r_vector
 
 
-def print_generated_robots(r_vector):
+def print_generated_robots(r_vector: Iterable[RvectorSubscript]):
     if r_vector == None:
         print(r_vector)
     else:
@@ -52,7 +59,7 @@ def print_generated_robots(r_vector):
             count +=1
         print(t)
 
-def write_to_csv_generated_robots(r_vector):
+def write_to_csv_generated_robots(r_vector: Iterable[RvectorSubscript]):
     fieldnames = ['No.', 'IDENTITY', 'TYPE', 'MASS', 'RANGE', 'RESOLUTION']
 
     with open('Files/robot_data.csv', 'w') as csv_file:

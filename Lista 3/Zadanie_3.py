@@ -1,6 +1,6 @@
 import random
 
-def fermat_test(n, k):
+def fermat_test(n: int, k):
     if n == 2:
         return True
 
@@ -14,7 +14,7 @@ def fermat_test(n, k):
             return False
     return True
 
-def miller_rabin(n, k):
+def miller_rabin(n: int, k):
 
     if n == 2:
         return True
@@ -39,7 +39,7 @@ def miller_rabin(n, k):
             return False
     return True
 
-def test(number, number_of_iterations):
+def test(number: int, number_of_iterations):
     print(f'Number to be testes: {number}')
     for i in range(number_of_iterations):
         print(f'\nIteration No. {i + 1}')
@@ -51,6 +51,3 @@ number_of_iterations = 5
 number = 16
 
 test(number, number_of_iterations)
-
-
-

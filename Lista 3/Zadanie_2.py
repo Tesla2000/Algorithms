@@ -1,16 +1,18 @@
 import math
+from collections.abc import Sized
 from datetime import datetime
-import numpy as np
-import matplotlib.pyplot as plt
 
-def factors(n):
+import matplotlib.pyplot as plt
+import numpy as np
+
+def factors(n: float):
     factors = []
     for i in range(1, n + 1):
         if n % i == 0:
             factors.append(i)
     return factors
 
-def aczp(a, b):
+def aczp(a: float, b: float):
     a_primes = factors(a)
     b_primes = factors(b)
     common = (set(a_primes) - (set(a_primes) - set(b_primes)))
@@ -33,7 +35,7 @@ def get_number():
 def get_time():
     return datetime.now()
 
-def graph(aczp, euc):
+def graph(aczp: Sized, euc):
     fig, axs = plt.subplots(2)
     fig.suptitle('Time in miliseconds')
     axs[0].set_title('Prime algorithm')
@@ -70,4 +72,3 @@ def main():
     graph(times_aczp, times_euc)
 
 main()
-

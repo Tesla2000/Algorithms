@@ -1,19 +1,20 @@
+from typing import Union
 #suma potęg 3
-def sequence_1(n):
+def sequence_1(n: Union[complex, float, int]):
     if n ==0:
         return 0
     else:
         return 3**n +sequence_1(n-1)
 
 #
-def sequence_2(n):
+def sequence_2(n: Union[complex, float, int]):
     if n ==-1 or n==0:
         return 0
     else:
         return n+sequence_2(n-2)
 
 #wzór fibbonaciego
-def sequence_3(n):
+def sequence_3(n: Union[complex, float, int]):
     if n==0:
         return 0
     elif n ==1:
@@ -33,5 +34,3 @@ for i in range(n):
 print("\nCiąg 3:")
 for i in range(n):
     print(sequence_3(i))
-
-

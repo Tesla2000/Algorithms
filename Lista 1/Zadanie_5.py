@@ -1,8 +1,11 @@
+from collections.abc import Sequence
+from typing import Union
+
+import matplotlib.pyplot as plt
 import networkx as nx
 import numpy as np
-import matplotlib.pyplot as plt
 
-def counter(net_x,net_y,safe_dist):
+def counter(net_x,net_y,safe_dist: Union[complex, float, int]):
     start_x = 0
     counter_x = 0
     while start_x <= net_x:
@@ -18,7 +21,7 @@ def counter(net_x,net_y,safe_dist):
     return [counter_x,counter_y,counter_y*counter_x]
 
 
-def cord_VV(safe_distance,info):
+def cord_VV(safe_distance: Union[complex, float, int],info: Sequence[Union[complex, float, int]]):
     x_count = info[0]
     y_count = info[1]
 
@@ -46,7 +49,7 @@ def cord_VV(safe_distance,info):
 
     return [dict(enumerate(Vx, start=1)),dict(enumerate(Vy, start=1))]
 
-def add_nodes(info,dict):
+def add_nodes(info: Sequence,dict: Sequence[Sequence]):
     x_count = info[0]
     y_count = info[1]
     max_nodes = info[2]
@@ -78,4 +81,3 @@ gpos = add_nodes(x_y_max,cords)
 
 nx.draw(g, gpos, node_color='yellow')
 plt.show()
-
